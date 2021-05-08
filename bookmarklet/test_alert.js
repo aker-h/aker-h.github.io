@@ -1,3 +1,5 @@
-javascript:(function(){
-	alert('Hello World!\nHello Javascipt!');
-})();
+javascript:(
+	function(){
+		alert('Hello World!\nHello Javascipt!');
+	}
+)()
