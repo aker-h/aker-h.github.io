@@ -1,5 +1,5 @@
 javascript:(
 	function(){
-		alert('Hello World!\nHello Javascipt!\nversion alpha');
+		alert('Hello World!\nHello JavaScript!\nVersion alpha');
 	}
 )()
