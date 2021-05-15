@@ -17,7 +17,7 @@
     </style>
   </head>
   
-  <body>
+  <body onload="initialize()">
     
     <!-- wrapper -->
     <div class="wrapper">
@@ -29,6 +29,7 @@
       
       <div class="mbody">
         <input type="text" name="setAdress">
+        <div id="map"></div>
         <script type="text/javascript"> 
           function initialize() { 
             var latlng = new google.maps.LatLng(35.623394447992176, 139.71882674315157); 
@@ -48,7 +49,7 @@
           } 
  
         </script> 
-        <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCnyN5lMigrfyz6lKUYpEjdcxmS7o7VZW8&callback=initMap"
+        <script type=""text/javascript src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCnyN5lMigrfyz6lKUYpEjdcxmS7o7VZW8&callback=initMap"
             async defer></script> 
       <!-- end of .mbody -->  
       </div>
