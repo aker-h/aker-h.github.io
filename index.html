@@ -29,24 +29,25 @@
       
       <div class="mbody">
         <input type="text" name="setAdress">
-        <script>
-          var latlang = new google.maps.LatLng(35.62301731035229, 139.71848677725666);
-          var myOption = {
-            zoom: 16,
-            center: latlang,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          
-          var map = new google.maps.Map(document.getElementById('map'), myOption);          
-            
-          var myLatlng = new google.maps.LatLng(35.62341424113547, 139.71854753303577);
-          var marker = new google.maps.Marker({
-            positon: myLatlng,
-            map: map,
-            title: "I`m here now."
-          });
-          
-        </script>
+        <script type="text/javascript"> 
+          function initialize() { 
+            var latlng = new google.maps.LatLng(35.623394447992176, 139.71882674315157); 
+            var myOptions = { 
+              zoom: 16, 
+              center: latlng, 
+              mapTypeId: google.maps.MapTypeId.ROADMAP 
+            }; 
+            var map = new google.maps.Map(document.getElementById("map"), myOptions); 
+
+            var myLatlng = new google.maps.LatLng(35.6234108787027, 139.71855580609898);
+            var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title:"I`m here now."
+            });   
+          } 
+ 
+        </script> 
         <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCnyN5lMigrfyz6lKUYpEjdcxmS7o7VZW8&callback=initMap"
             async defer></script> 
       <!-- end of .mbody -->  
