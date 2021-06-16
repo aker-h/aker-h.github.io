@@ -33,5 +33,5 @@ javascript:(function(d){
     bodyElm.removeChild(copyFrom);
     
     console.log(copiedText);
-    alert('copied :' + copiedText);
+    alert(copiedText);
 })(document);
