@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>        
+        <!-- 全体 -->
+        <style>
+            :root {
+                --width: 516px;
+                --height: 516px;
+
+                --borderScales: 0.5px solid black;
+
+                --scaleHourBig: calc(516px / 16.125);
+                --scaleHourSmall: calc(516px / 21.5);
+                --scaleMinSec: calc(516px / 32.25);
+
+                --clockHandsShort: calc(516px / 8);
+
+                --startSec: 0deg;
+                --startMin: 0deg;
+                --startHour: 0deg;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            .red {
+                background: red;
+            }
+            .blue {
+                background: blue;
+            }
+
+            .upper, .lower {
+                width: 100%;
+                height: 50%;
+            }
+            .left {
+                width: 50%;
+                height: 100%;
+                float: left;
+            }
+            .right {
+                width: 50%;
+                height: 100%;
+                float: right;
+            }
+            .maskInner {
+                width: 100%;
+                height: 100%;
+                border-radius: 300px;
+                background: #ededed;
+            }
+
+            .clockHandsInner {
+                width: 100%;
+                height: 100%;
+            }
+
+            body {
+                background: #ededed;
+                width: var(--width);
+                height: var(--height);                
+            }
+            .cover {
+                position: absolute;
+                width: var(--width);
+                height: var(--width);
+                border-radius: calc(var(--width) / 2);
+                background: linear-gradient(-45deg, lightGray, white);
+                opacity: 0.2;
+            }
+
+            .background {
+                position: absolute;
+                width: var(--width);
+                height: var(--width);
+                background: #ededed;
+                border-radius: calc(var(--width) / 2);
+                box-shadow: -7px -7px 14px white, 7px 7px 14px gray;
+            }
+
+            .scales {
+                position: absolute;
+                width: var(--width);
+                height: var(--width);
+            }
+
+            .clockHands {
+                position: absolute;
+                width: var(--width);
+                height: var(--width); 
+            }
+
+            @keyframes animationClockHands {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+        <!-- 目盛り 数字 -->
+        <style>
+            .scales .numsOuter {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                padding: var(--scaleHourBig);
+            }
+            .numsOuter .nums, .numsOuter .numsMiddle {
+                position: absolute;
+                width: calc(var(--width) - (var(--width) / 16.126) * 2);
+                height: calc(var(--height) - (var(--height) / 16.126) * 2);
+            }
+            .numsOuter .nums div, .numsMiddle div{
+                font-size: 32px;
+            }
+            .numsTop {
+                width: 100%;
+                display: table;
+            }
+            .nums .numsTop {
+                width: 100%;
+                height: var(--height) / 16.125;
+            }
+            .nums .twelve {
+                width: 100%;
+                text-align: center;
+            }            
+            .nums .numsBelow {
+                width: 100%;
+                height: calc(var(--height) - ((var(--height) / 16.125) * 2) - var(--height) / 10.75);
+                position: relative;
+            }
+            .nums .six {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+            }
+            .numsOuter .numsMiddle {
+                position: relative;
+            }
+            .numsMiddle .row111 {
+                position:absolute;
+                top: 4%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 56%;
+            }
+            .numsMiddle .row102 {
+                position: absolute;
+                top: 21%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 88%;
+            }
+            .numsMiddle .row93 {
+                position:absolute;
+                top: 50%;
+                left: 0%;
+                transform: translateY(-50%);
+                width: calc(var(--width) - (var(--width) / 16.126) * 2);
+            }
+            .numsMiddle .row84 {
+                position: absolute;
+                top: 69%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 88%;
+            }
+            .numsMiddle .row75 {
+                position:absolute;
+                top: 86%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 56%;
+            }
+            .row111 .eleven, .row102 .ten, .row93 .nine, .row84 .eight, .row75 .seven {
+                float: left;
+            }
+            .row111 .one, .row102 .two,.row93 .three, .row84 .four, .row75 .five {
+                float:right;
+            }
+        </style>
+        <!-- 目盛り 6° -->
+        <style>
+            .minSec {
+                position: absolute;
+                width: 100%;
+                height: 100%;                
+            }
+            .minSec .offset {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .minSec .offset .cross {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .minSec .offset .cross .upper {
+                border-bottom: var(--borderScales);
+            }
+            .minSec .offset .cross .lower {
+                border-top: var(--borderScales);
+            }
+            .minSec .offset .cross .upper .left, .minSec .offset .cross .lower .left {
+                border-right: var(--borderScales);
+            }
+            .minSec .offset .cross .upper .right, .minSec .offset .cross .lower .right {
+                border-left: var(--borderScales);
+            }
+
+            .minSec.maskOuter {
+                position: absolute;
+                width: var(--width);
+                height: var(--height);
+                padding: var(--scaleMinSec);
+            }
+        </style>
+        <!-- 目盛り30° -->
+        <style>
+            .hourSmall {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .hourSmall .hs{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            .hs .upper {
+                border-bottom: var(--borderScales);
+            }
+            .hs .lower {
+                border-top: var(--borderScales);
+            }
+            .hs .upper .left, .hs .lower .left {
+                border-right: var(--borderScales);
+            }
+            .hs .upper .right, .hs .lower .right  {
+                border-left: var(--borderScales);
+            }
+            .hs.hs30 {
+                transform: rotate(30deg);
+            }
+            .hs.hs60 {
+                transform: rotate(60deg);
+            }
+            
+            .offset.o6 {
+                transform: rotate(6deg);
+            }
+            .offset.o12 {
+                transform: rotate(12deg);
+            }
+            .offset.o18 {
+                transform: rotate(18deg);
+            }
+            .offset.o24 {
+                transform: rotate(24deg);
+            }
+
+            .cross.c30 {
+                transform: rotate(30deg);
+            }
+            .cross.c60 {
+                transform: rotate(60deg);
+            }
+            .hourSmall.maskOuter {
+                position: absolute;
+                width: var(--width);
+                height: var(--height);
+                padding: var(--scaleHourSmall);
+            }
+        </style>
+        <!-- 目盛り 90° -->
+        <style>
+            .hourBig {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .hourBig .upper {
+                border-bottom: var(--borderScales);
+            }
+            .hourBig .lower {
+                border-top: var(--borderScales);
+            }
+            .hourBig .upper .left, .hourBig .lower .left {
+                border-right: var(--borderScales);
+            }
+            .hourBig .upper .right, .hourBig .lower .right {
+                border-left: var(--borderScales);
+            }
+
+            .hourBig.maskOuter {
+                position: absolute;
+                width: var(--width);
+                height: var(--width);
+                padding: var(--scaleHourBig);
+            }
+        </style>
+        <!-- 秒針 -->
+        <style>
+            .clockHands .seconds {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .seconds.Outer {
+                padding: var(--scaleMinSec);
+                transform: rotate(var(--startSec));
+            }
+            .seconds .clockHandsInner {
+                animation: animationClockHands 60s steps(60, end) infinite;
+            }
+            .seconds .clockHandsInner .upper .left {
+                border-right: 0.5px solid lightgray;
+            }
+            .seconds .clockHandsInner .upper .right {
+                border-left: 0.5px solid lightgray;
+            }
+        </style>
+        <!-- 分針 -->
+        <style>
+            .clockHands .minutes {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .minutes.Outer {
+                padding: var(--scaleMinSec);
+                transform: rotate(var(--startMin));
+            }
+            .minutes .clockHandsInner {
+                animation: animationClockHands 3600s linear infinite;
+            }
+            .minutes .clockHandsInner .upper .left {
+                border-right: 1px solid black;
+            }
+            .minutes .clockHandsInner .upper .right {
+                border-left: 1px solid black;
+            }
+        </style>
+        <!-- 時針 -->
+        <style>
+            .clockHands .hours {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .hours.Outer {
+                padding: var(--clockHandsShort);
+                transform: rotate(var(--startHour));
+            }
+            .hours .clockHandsInner {
+                animation: animationClockHands 43200s linear infinite;
+            }
+            .hours .clockHandsInner .upper .left {
+                border-right: 1px solid red;
+            }
+            .hours .clockHandsInner .upper .right {
+                border-left: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 初期値の作成 -->
+        <script>
+            (() => {
+                let now = new Date();
+                let sec = now.getSeconds();
+                let min = now.getMinutes();
+                let hour = now.getHours();
+
+                let startSec = 0.0;
+                let startMin = 0.0;
+                let startHour = 0.0;
+
+                startSec = 360.0 / 60.0 * sec;
+                startMin = 360.0 / 3600.0 * (min * 60.0 + sec);
+                startHour = 360.0 / 43200.0 * (hour * 3600.0 + min * 60.0 + sec);
+
+                let style = document.createElement('style');
+                style.innerHTML = 
+`:root {
+    --startSec: ${startSec}deg !important;
+    --startMin: ${startMin}deg !important;
+    --startHour: ${startHour}deg !important;
+}`;
+
+                document.head.appendChild(style);
+            })();
+        </script>        
+        <div class="background">
+            <div class="scales">                
+                <div class="minSec">
+                    <div class="offset o6">
+                        <div class="cross">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c30">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c60">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset o12">
+                        <div class="cross">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c30">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c60">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset o18">
+                        <div class="cross">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c30">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c60">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset o24">
+                        <div class="cross">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c30">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                        <div class="cross c60">
+                            <div class="upper">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="lower">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="minSec maskOuter">
+                    <div class="maskInner"></div>
+                </div>
+                <div class="hourSmall">
+                    <div class="hs hs30">
+                        <div class="upper">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="lower">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                    </div>
+                    <div class="hs hs60">
+                        <div class="upper">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="lower">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hourSmall maskOuter">
+                    <div class="maskInner"></div>
+                </div>
+                <div class="hourBig">
+                    <div class="upper">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="lower">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>                                          
+                </div>
+                <div class="hourBig maskOuter">
+                    <div class="maskInner"></div>
+                </div>
+                <div class="numsOuter">
+                    <div class="nums">
+                        <div class="numsTop">
+                            <div class="twelve">12</div>
+                        </div>                                          
+                        <div class="numsBelow">
+                            <div class="six">6</div>
+                        </div>                        
+                    </div>
+                    <div class="numsMiddle">
+                        <div class="row111">
+                            <div class="eleven">11</div>
+                            <div class="one">1</div>
+                        </div>
+                        <div class="row102">
+                            <div class="ten">10</div>
+                            <div class="two">2</div>
+                        </div>
+                        <div class="row93">
+                            <div class="nine">9</div>
+                            <div class="three">3</div>
+                        </div>
+                        <div class="row84">
+                            <div class="eight">8</div>
+                            <div class="four">4</div>
+                        </div>
+                        <div class="row75">
+                            <div class="seven">7</div>
+                            <div class="five">5</div>
+                        </div>                  
+                    </div>                            
+                </div>
+            </div>
+            <div class="clockHands">
+                <div class="seconds Outer">
+                    <div class="clockHandsInner">
+                        <div class="upper">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="minutes Outer">
+                    <div class="clockHandsInner">
+                        <div class="upper">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hours Outer">
+                    <div class="clockHandsInner">
+                        <div class="upper">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="cover"></div>     
+    </body>
+</html>
