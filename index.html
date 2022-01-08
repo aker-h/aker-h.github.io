@@ -107,12 +107,80 @@
                 height: 100%;
                 padding: var(--scaleHourBig);
             }
-            .numsOuter .nums div{
-                position: relative;
+            .numsOuter .nums, .numsOuter .numsMiddle {
+                position: absolute;
+                width: calc(var(--width) - (var(--width) / 16.126) * 2);
+                height: calc(var(--height) - (var(--height) / 16.126) * 2);
+            }
+            .numsOuter .nums div, .numsMiddle div{
+                font-size: 32px;
+            }
+            .numsTop {
+                width: 100%;
+                display: table;
+            }
+            .nums .numsTop {
+                width: 100%;
+                height: var(--height) / 16.125;
             }
             .nums .twelve {
                 width: 100%;
-                margin: 0 auto;
+                text-align: center;
+            }            
+            .nums .numsBelow {
+                width: 100%;
+                height: calc(var(--height) - ((var(--height) / 16.125) * 2) - var(--height) / 10.75);
+                position: relative;
+            }
+            .nums .six {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+            }
+            .numsOuter .numsMiddle {
+                position: relative;
+            }
+            .numsMiddle .row111 {
+                position:absolute;
+                top: 4%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 56%;
+            }
+            .numsMiddle .row102 {
+                position: absolute;
+                top: 21%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 88%;
+            }
+            .numsMiddle .row93 {
+                position:absolute;
+                top: 50%;
+                left: 0%;
+                transform: translateY(-50%);
+                width: calc(var(--width) - (var(--width) / 16.126) * 2);
+            }
+            .numsMiddle .row84 {
+                position: absolute;
+                top: 69%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 88%;
+            }
+            .numsMiddle .row75 {
+                position:absolute;
+                top: 86%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 56%;
+            }
+            .row111 .eleven, .row102 .ten, .row93 .nine, .row84 .eight, .row75 .seven {
+                float: left;
+            }
+            .row111 .one, .row102 .two,.row93 .three, .row84 .four, .row75 .five {
+                float:right;
             }
         </style>
         <!-- 目盛り 6° -->
@@ -330,12 +398,7 @@
             })();
         </script>        
         <div class="background">
-            <div class="scales">
-                <div class="numsOuter">
-                    <!-- <div class="nums">
-                        <div class="twelve">12</div>
-                    </div>                     -->
-                </div>
+            <div class="scales">                
                 <div class="minSec">
                     <div class="offset o6">
                         <div class="cross">
@@ -506,7 +569,39 @@
                 </div>
                 <div class="hourBig maskOuter">
                     <div class="maskInner"></div>
-                </div>                
+                </div>
+                <div class="numsOuter">
+                    <div class="nums">
+                        <div class="numsTop">
+                            <div class="twelve">12</div>
+                        </div>                                          
+                        <div class="numsBelow">
+                            <div class="six">6</div>
+                        </div>                        
+                    </div>
+                    <div class="numsMiddle">
+                        <div class="row111">
+                            <div class="eleven">11</div>
+                            <div class="one">1</div>
+                        </div>
+                        <div class="row102">
+                            <div class="ten">10</div>
+                            <div class="two">2</div>
+                        </div>
+                        <div class="row93">
+                            <div class="nine">9</div>
+                            <div class="three">3</div>
+                        </div>
+                        <div class="row84">
+                            <div class="eight">8</div>
+                            <div class="four">4</div>
+                        </div>
+                        <div class="row75">
+                            <div class="seven">7</div>
+                            <div class="five">5</div>
+                        </div>                  
+                    </div>                            
+                </div>
             </div>
             <div class="clockHands">
                 <div class="seconds Outer">
