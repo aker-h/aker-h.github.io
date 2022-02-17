@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+}
+
+.wrapper {
+    width: 600px;
+    height: 900px;
+    background: var(--wallpaper);
+    color: var(--textMain);
+}
+
+.frameOuter {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 400px;
+    height: 500px;
+    border: 1px solid var(--borderline);
+}
+
+.frameInner {
+    width: 400px;
+    height: 500px;
+    border-width: 0;
+}
