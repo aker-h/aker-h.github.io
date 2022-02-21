@@ -40,12 +40,12 @@ function applyClickListener () {
         switch (value) {
             case 'light': {
                 rootCss.href = DarkBlueThemeHref;
-                document.cookie = 'themeFlag=darkBlue';
+                document.cookie = 'themeFlag=darkBlue; secure';
                 break;
             }
             case "darkBlue": {
                 rootCss.href = LightThemeHref;
-                document.cookie = 'themeFlag=light';
+                document.cookie = 'themeFlag=light; secure';
                 break;
             }
         }
