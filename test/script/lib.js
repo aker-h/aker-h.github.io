@@ -9,7 +9,14 @@ function applyClickListener () {
         if (debug) {
             console.log(cookies);
         }
-        let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')});
+        let themeFlag = cookies.find((row) => {
+            let strRow = `${row}`;
+            if (strRow.indexOf('themeFlag') !== -1) {
+                return true;
+            } else {
+                return false;
+            }
+        });
         if (debug) {
             console.log(themeFlag);
         }
