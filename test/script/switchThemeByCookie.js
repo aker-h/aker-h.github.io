@@ -19,10 +19,23 @@
         document.cookie = 'themeFlag=light';
         return;
     } else if (allCookies !== '') {
+        if (debug) {
+            console.log(allCookies);
+        }
         let cookies = allCookies.split('; ');
+        if (debug) {
+            console.log(cookies);
+        }
         let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')});
+        if (debug) {
+            console.log(themeFlag);
+        }
         let value;
         
+        if (debug) {
+            console.log(value);
+        }
+
         try {
             value = themeFlag.splut('=')[1];
         } catch (e) {
