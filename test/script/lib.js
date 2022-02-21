@@ -1,8 +1,10 @@
 function applyClickListener () {
     console.log(document.cookie);
-    
+
     $('#testButton').on('click', () => {
-        let themeFlag = document.cookie.split('; ').find ((row) => {
+        let allCookies = `${document.cookie}`;
+
+        let themeFlag = allCookies.split('; ').find ((row) => {
                                                 row.startsWith('themeFlag')}
                                              )
                                        .split('=')[1];
@@ -10,7 +12,7 @@ function applyClickListener () {
         let LightThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterLight.css',
             DarkBlueThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterDarkBlue.css';
 
-            let rootCss = document.getElementById('rootCss');
+        let rootCss = document.getElementById('rootCss');
 
         switch (themeFlag) {
             case 'light': {
