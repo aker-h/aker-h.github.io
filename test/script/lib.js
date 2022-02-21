@@ -1,46 +1,36 @@
-function applyClickListener () {
-    console.log(document.cookie);
+(() => {
+    let allCookies;
 
-    $('#testButton').on('click', () => {
-        let debug = true;
+    try {
+        allCookies = document.cookie;
+    } catch (e) {
+        allCookies = '';
+    }
 
-        let allCookies = `${document.cookie}`;
+    let LightThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterLight.css',
+        DarkBlueThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterDarkBlue.css';
+
+    let rootCss = document.getElementById('rootCss')
+
+    if (allCookies === '') {
+        rootCss.href = LightThemeHref;
+        document.cookie = 'themeFlag=light';
+        return;
+    } else if (allCookies !== '') {
         let cookies = allCookies.split('; ');
-        if (debug) {
-            console.log(cookies);
-        }
         let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')});
-        if (debug) {
-            console.log(themeFlag);
-        }
         let value;
-
         try {
-            value = themeFlag.split('=')[1];
+            value = themeFlag.splut('=')[1];
         } catch (e) {
             value = '';
         }
-
-        if (debug) {
-            console.log(value);
+        
+        if (value === '' || value === 'light') {
+            rootCss.href = LightThemeHref;
+        } else if (value === 'darkBlue') {
+            rootCss.href = DarkBlueThemeHref;
         }
-
-        let LightThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterLight.css',
-            DarkBlueThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterDarkBlue.css';
-
-        let rootCss = document.getElementById('rootCss');
-
-        switch (themeFlag) {
-            case 'light': {
-                rootCss.href = DarkBlueThemeHref;
-                document.cookie = 'themeFlag=darkBlue';
-                break;
-            }
-            case "darkBlue": {
-                rootCss.href = LightThemeHref;
-                document.cookie = 'themeFlag=light';
-                break;
-            }
-        }
-    });
-};
+        return;
+    }
+})();
