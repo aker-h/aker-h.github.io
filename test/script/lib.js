@@ -5,7 +5,7 @@ function applyClickListener () {
         let debug = true;
 
         let allCookies = `${document.cookie}`;
-        let cookies = allCookies.aplit('; ');
+        let cookies = allCookies.split('; ');
         if (debug) {
             console.log(cookies);
         }
