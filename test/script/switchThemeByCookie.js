@@ -37,19 +37,17 @@
         if (debug) {
             console.log(themeFlag);
         }
-        let value;
-        
-        if (debug) {
-            console.log(value);
-        }
+        let value;       
 
         try {
-            value = themeFlag.splut('=')[1];
+            value = themeFlag.split('=')[1];
         } catch (e) {
             value = '';
         }
         
-        console.log(value);
+        if (debug) {
+            console.log(value);
+        }
 
         if (value === '' || value === 'light') {
             rootCss.href = LightThemeHref;
