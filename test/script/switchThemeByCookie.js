@@ -1,8 +1,10 @@
 (() => {
+    let debug = true;
+
     let allCookies;
 
     try {
-        allCookies = document.cookie;
+        allCookies = `${document.cookie}`;
     } catch (e) {
         allCookies = '';
     }
@@ -20,12 +22,15 @@
         let cookies = allCookies.split('; ');
         let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')});
         let value;
+        
         try {
             value = themeFlag.splut('=')[1];
         } catch (e) {
             value = '';
         }
         
+        console.log(value);
+
         if (value === '' || value === 'light') {
             rootCss.href = LightThemeHref;
         } else if (value === 'darkBlue') {
