@@ -37,7 +37,7 @@ function applyClickListener () {
 
         let rootCss = document.getElementById('rootCss');
 
-        switch (themeFlag) {
+        switch (value) {
             case 'light': {
                 rootCss.href = DarkBlueThemeHref;
                 document.cookie = 'themeFlag=darkBlue';
