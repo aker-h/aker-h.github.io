@@ -2,12 +2,28 @@ function applyClickListener () {
     console.log(document.cookie);
 
     $('#testButton').on('click', () => {
-        let allCookies = `${document.cookie}`;
+        let debug = true;
 
-        let themeFlag = allCookies.split('; ').find ((row) => {
-                                                row.startsWith('themeFlag')}
-                                             )
-                                       .split('=')[1];
+        let allCookies = `${document.cookie}`;
+        let cookies = allCookies.aplit('; ');
+        if (debug) {
+            console.log(cookies);
+        }
+        let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')});
+        if (debug) {
+            console.log(themeFlag);
+        }
+        let value;
+
+        try {
+            value = themeFlag.split('=')[1];
+        } catch (e) {
+            value = '';
+        }
+
+        if (debug) {
+            console.log(value);
+        }
 
         let LightThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterLight.css',
             DarkBlueThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterDarkBlue.css';
@@ -17,12 +33,12 @@ function applyClickListener () {
         switch (themeFlag) {
             case 'light': {
                 rootCss.href = DarkBlueThemeHref;
-                document.cookie = 'themeFlag: darkBlue';
+                document.cookie = 'themeFlag=darkBlue';
                 break;
             }
             case "darkBlue": {
                 rootCss.href = LightThemeHref;
-                document.cookie = 'themeFlag: light';
+                document.cookie = 'themeFlag=light';
                 break;
             }
         }
