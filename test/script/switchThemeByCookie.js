@@ -14,16 +14,21 @@
 
     if (allCookies === '') {
         rootCss.href = LightThemeHref;
-        document.cookie = 'themeFlag: light';
+        document.cookie = 'themeFlag=light';
         return;
     } else if (allCookies !== '') {
         let cookies = allCookies.split('; ');
-        let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')})
-                               .split('=')[1];
+        let themeFlag = cookies.find((row) => {row.startsWith('themeFlag')});
+        let value;
+        try {
+            value = themeFlag.splut('=')[1];
+        } catch (e) {
+            value = '';
+        }
         
-        if (themeFlag === undefined || themeFlag === 'light') {
+        if (value === '' || value === 'light') {
             rootCss.href = LightThemeHref;
-        } else if (themeFlag === 'darkBlue') {
+        } else if (value === 'darkBlue') {
             rootCss.href = DarkBlueThemeHref;
         }
         return;
