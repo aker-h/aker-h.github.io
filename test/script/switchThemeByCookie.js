@@ -16,7 +16,7 @@
 
     if (allCookies === '') {
         rootCss.href = LightThemeHref;
-        document.cookie = 'themeFlag=light';
+        document.cookie = 'themeFlag=light; secure';
         return;
     } else if (allCookies !== '') {
         if (debug) {
