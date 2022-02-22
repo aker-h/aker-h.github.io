@@ -13,6 +13,8 @@ class Cookie {
     }
 
     pull (key = '') {
+        let debug = true;
+        
         if (key === '') {
             return undefined;
         }
@@ -39,8 +41,6 @@ class Cookie {
     }
 
     set (key, value, path = '', domain = '', expire, secure= 'secure') {
-        let debug = true;
-        
         if (key === undefined) {
             throw new Error ('Key must have an argment.');
         }
