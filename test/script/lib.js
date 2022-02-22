@@ -19,7 +19,16 @@ class Cookie {
             return undefined;
         }
 
-        let data = this.values.find((d) => {d.indexOf(key) === 0});
+        let data = this.values.find((d) => {
+            if (debug) {
+                console.log(`key: ${key}\nd  : ${d}`);
+            }
+            if (d.indexOf(key) === 0) {
+                return true;
+            } else {
+                return false;
+            }            
+        });
         
         if (debug) {
             console.log(data);
