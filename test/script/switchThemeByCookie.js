@@ -9,7 +9,10 @@
 
     if (themeFlag === 'darkBlue') {
         rootCss.href = DarkBlueThemeHref;
-    } else {
+    } else {        
         rootCss.href = LightThemeHref;
+        if (themeFlag !== 'light') {
+            cookie.set('themeFlag', 'light');
+        }
     }
 })();
