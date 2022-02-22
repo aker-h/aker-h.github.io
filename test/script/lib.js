@@ -17,7 +17,7 @@ class Cookie {
             return undefined;
         }
 
-        let data = this.values.find((data) => {data.indexOf(key)});
+        let data = this.values.find((data) => {data.indexOf(key) === 0});
         let values = data.split('=');
 
         if (values.length = 2) {
