@@ -87,36 +87,6 @@ function applyClickListener () {
     console.log(document.cookie);
 
     $('#testButton').on('click', () => {
-        // let debug = true;
-
-        // // let allCookies = `${document.cookie}`;
-        // let cookies = allCookies.split('; ');
-        // if (debug) {
-        //     console.log(cookies);
-        // }
-        // let themeFlag = cookies.find((row) => {
-        //     let strRow = `${row}`;
-        //     if (strRow.indexOf('themeFlag') !== -1) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // });
-        // if (debug) {
-        //     console.log(themeFlag);
-        // }
-        // let value;
-
-        // try {
-        //     value = themeFlag.split('=')[1];
-        // } catch (e) {
-        //     value = '';
-        // }
-
-        // if (debug) {
-        //     console.log(value);
-        // }
-
         let cookie = new Cookie();
         let themeFlag = cookie.pull('themeFlag');
 

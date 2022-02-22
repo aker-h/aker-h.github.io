@@ -1,59 +1,15 @@
 (() => {
-    let debug = true;
-
-    let allCookies;
-
-    try {
-        allCookies = `${document.cookie}`;
-    } catch (e) {
-        allCookies = '';
-    }
+    let cookie = new Cookie (true);
+    let themeFlag = cookie.pull('themeFlag');
 
     let LightThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterLight.css',
         DarkBlueThemeHref = 'https://aker-h.github.io/myLib/css/rootTwitterDarkBlue.css';
 
     let rootCss = document.getElementById('rootCss')
 
-    if (allCookies === '') {
+    if (themeFlag === 'darkBlue') {
+        rootCss.href = DarkBlueThemeHref;
+    } else {
         rootCss.href = LightThemeHref;
-        document.cookie = 'themeFlag=light; secure';
-        return;
-    } else if (allCookies !== '') {
-        if (debug) {
-            console.log(allCookies);
-        }
-        let cookies = allCookies.split('; ');
-        if (debug) {
-            console.log(cookies);
-        }
-        let themeFlag = cookies.find((row) => {
-            let strRow = `${row}`;
-            if (strRow.indexOf('themeFlag') !== -1) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-        if (debug) {
-            console.log(themeFlag);
-        }
-        let value;       
-
-        try {
-            value = themeFlag.split('=')[1];
-        } catch (e) {
-            value = '';
-        }
-        
-        if (debug) {
-            console.log(value);
-        }
-
-        if (value === '' || value === 'light') {
-            rootCss.href = LightThemeHref;
-        } else if (value === 'darkBlue') {
-            rootCss.href = DarkBlueThemeHref;
-        }
-        return;
     }
 })();
