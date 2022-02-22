@@ -68,6 +68,7 @@ class Cookie {
         setString += 'secure; ';
 
         domain.cookie = setString;
+        this.initialize();
     }
 }
 
