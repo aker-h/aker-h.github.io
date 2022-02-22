@@ -39,6 +39,8 @@ class Cookie {
     }
 
     set (key, value, path = '', domain = '', expire, secure= 'secure') {
+        let debug = true;
+        
         if (key === undefined) {
             throw new Error ('Key must have an argment.');
         }
