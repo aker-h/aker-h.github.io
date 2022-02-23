@@ -26,7 +26,7 @@
     --tWhite: #fff;
 
     /* テキスト */
-    --textMain: var(--white);
+    --textMain: var(--tWhite);
     --textMainDis: #8a8f95;
     --textSub: var(--tBlack);    
     --textGray: #8899a6;

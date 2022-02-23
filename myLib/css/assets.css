@@ -1,0 +1,13 @@
+body {
+    background-color: var(--wallpaper);
+}
+
+button {
+    border: 1px solid var(--borderline);
+    background-color: transparent;
+    color: var(--textMain);
+}
+
+button:hover {
+    background-color: var(--itemHighlight);
+}
