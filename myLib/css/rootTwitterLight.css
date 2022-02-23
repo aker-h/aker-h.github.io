@@ -49,5 +49,5 @@
     --mainBtnTxt: var(--textMain);
     --subBtn: var(--tDarkGray);
     --subBtnOn: var(--tDarkGrayOn);
-    --subBtnTxt: var(--textSub);
+    --subBtnTxt: var(--tWhite);
 }
