@@ -32,7 +32,7 @@ button.primary:disabled {
 button.secondary {
     border-color: var(--subBtn);
     background-color: var(--subBtn);
-    color: var(--subtBtnTxt);
+    color: var(--subBtnTxt);
 }
 
 button.secondary:hover {
