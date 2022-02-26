@@ -25,6 +25,10 @@
     --tRedBg: rgba(244, 33, 46, 0.1);
     --tWhite: #fff;
 
+    --favoColor: var(--tLightBlue);
+    --favoColorOn: var(--tLightBlueOn);
+    --favoColorDis: var(--tLightBlueDis);
+
     /* テキスト */
     --textMain: var(--tBlack);
     --textMainDis: #8a8f95;
@@ -44,9 +48,10 @@
     --divHighlightDouble: #efefef;
     --itemHighlight: #e7e7e8;
     --shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
-    --mainBtn: var(--tLightBlue);
-    --mainBtnOn: var(--tLightBlueOn);
-    --mainBtnTxt: var(--textMain);
+    --mainBtn: var(--favoColor);
+    --mainBtnOn: var(--favoColorOn);
+    --mainBtnDis: var(--favoCOlorDis);
+    --mainBtnTxt: var(--tWhite);
     --subBtn: var(--tDarkGray);
     --subBtnOn: var(--tDarkGrayOn);
     --subBtnTxt: var(--tWhite);
