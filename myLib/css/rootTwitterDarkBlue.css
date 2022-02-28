@@ -1,5 +1,5 @@
 :root {  
-    /* カラー */
+    /* カラー */    
     --tBlack: #0f1419;
     --tDarkGray: #0f1419;
     --tDarkGrayOn: #272c30;
@@ -17,6 +17,10 @@
     --tLightGreenOn:#00a770;
     --tLightGreenDis: #0b6d54;
     --tLightGreenBg: rgba(0, 186, 124, 0.1);
+    --tOrange: #ff7a00;
+    --tOrangeOn: #e66e00;
+    --tOrangeDis: #8a4d16;
+    --tOrangeBg: rgba(255, 122, 0, 0.1)
     --tPink: #f91880;
     --tPinkOn: #e01673;
     --tPinkDis: #871c56;
@@ -24,6 +28,10 @@
     --tRed: #f4212e;
     --tRedBg: rgba(244, 33, 46, 0.1);
     --tWhite: #fff;
+    --tYellow: #ffd400;
+    --tYellowOn: #e6bf00;
+    --tYellowDis: #8a7a16;
+    --tYellowBg: rgba(255, 212, 0, 0.1);
 
     --favoColor: var(--tLightBlue);
     --favoColorOn: var(--tLightBlueOn);
