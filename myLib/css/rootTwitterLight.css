@@ -3,10 +3,6 @@
     --tBlack: #0f1419;
     --tDarkGray: #0f1419;
     --tDarkGrayOn: #272c30;
-    --tIndigo: #7856ff;
-    --tIndigoOn: #6c4de6;
-    --tIndigoDis: #473b95;
-    --tIndigoBg:rgba(120, 86, 255, 0.1);
     --tLightBlue: #1d9bf0;
     --tLightBlueOn: #1a8cd8;
     --tLightBlueDis: #195d8d;
@@ -20,11 +16,15 @@
     --tOrange: #ff7a00;
     --tOrangeOn: #e66e00;
     --tOrangeDis: #8a4d16;
-    --tOrangeBg: rgba(255, 122, 0, 0.1)
+    --tOrangeBg: rgba(255, 122, 0, 0.1);
     --tPink: #f91880;
     --tPinkOn: #e01673;
     --tPinkDis: #871c56;
     --tPinkBg: rgba(249, 24, 128, 0.1);
+    --tPurple: #7856ff;
+    --tPurpleOn: #6c4de6;
+    --tPurpleDis: #473b95;
+    --tPurpleBg:rgba(120, 86, 255, 0.1);
     --tRed: #f4212e;
     --tRedBg: rgba(244, 33, 46, 0.1);
     --tWhite: #fff;
