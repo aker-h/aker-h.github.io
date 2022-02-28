@@ -60,7 +60,6 @@
     --mainBtnOn: var(--favoColorOn);
     --mainBtnDis: var(--favoColorDis);
     --mainBtnTxt: var(--tWhite);
-    --mainBtnOn: var(--tLightBlueOn);
     --subBtn: var(--tLightGray);
     --subBtnOn: var(--tLightGrayOn);
     --subBtnTxt: var(--textSub);
