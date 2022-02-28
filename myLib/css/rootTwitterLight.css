@@ -54,7 +54,7 @@
     --borderline: #eff3f4;
     --divHighlight: #f7f7f7;
     --divHighlightDouble: #efefef;
-    --itemHighlight: #e7e7e8;
+    --itemHighlight: rgba(15, 20, 25, 0.1);
     --shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
     --mainBtn: var(--favoColor);
     --mainBtnOn: var(--favoColorOn);
