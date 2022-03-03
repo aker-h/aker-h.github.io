@@ -38,25 +38,25 @@
     --favoColorDis: var(--tLightBlueDis);
 
     /* テキスト */
-    --textMain: var(--tBlack);
-    --textMainDis: #8a8f95;
-    --textSub: var(--tWhite);
-    --textGray: #8899a6;
-    --textGrayMarked: #253341;
+    --textMain: #d9d9d9;
+    --textMainDis: #7f7f7f;
+    --textSub: #0f1419;
+    --textGray: #6e767d;
+    --textGrayMarked: #4b5d6b;
     
 
     /* アイテム */
-    --wallpaper: var(--tWhite);
+    --wallpaper: #000;
     --wallpaperDark: #666;
-    --wallpaperBlur: rgba(255, 255, 255, 0.75);
-    --inputField: #eff3f4;
-    --card: #f7f9f9;
+    --wallpaperBlur: rgba(0, 0, 0, 0.65);
+    ---inputField: #202327;
+    --card: #15181c;
     --cardHighlight: rgba(255, 255, 255, 0.03);
-    --borderline: #eff3f4;
-    --divHighlight: #f7f7f7;
-    --divHighlightDouble: #efefef;
-    --itemHighlight: rgba(15, 20, 25, 0.1);
-    --shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
+    --borderline: #2f3336;
+    --divHighlight: rgba(255, 255, 255, 0.03);
+    --divHighlightDouble: #101010;
+    --itemHighlight: rgba(217, 217, 217, 0.1);
+    --shadow: rgb(255 255 255 / 20%) 0px 0px 15px, rgb(255 255 255 / 15%) 0px 0px 3px 1px;
     --mainBtn: var(--favoColor);
     --mainBtnOn: var(--favoColorOn);
     --mainBtnDis: var(--favoColorDis);

@@ -46,11 +46,11 @@
 
     /* アイテム */
     --wallpaper: #15202b;
-    --wallpaperDark: #000c19;
+    --wallpaperDark: #080d11;
     --wallpaperBlur: rgba(21, 32, 43, 0.75);
     --inputField: #253341;
     --card: #192734;
-    --cardHighlight: #202e3a;
+    --cardHighlight: rgba(255, 255, 255, 0.03);
     --borderline: #38444d;
     --divHighlight: #1c2732;
     --divHighlightDouble: #242e38;
