@@ -41,8 +41,9 @@
     --textMain: var(--tBlack);
     --textMainDis: #8a8f95;
     --textSub: var(--tWhite);
-    --textSubMarked: #253341;
     --textGray: #8899a6;
+    --textGrayMarked: #253341;
+    
 
     /* アイテム */
     --wallpaper: var(--tWhite);
