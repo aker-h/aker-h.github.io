@@ -47,7 +47,7 @@
 
     /* アイテム */
     --wallpaper: #000;
-    --wallpaperDark: #666;
+    --wallpaperDark: #000;
     --wallpaperBlur: rgba(0, 0, 0, 0.65);
     --inputField: #202327;
     --card: #15181c;
@@ -62,7 +62,7 @@
     --mainBtnOn: var(--favoColorOn);
     --mainBtnDis: var(--favoColorDis);
     --mainBtnTxt: var(--tWhite);
-    --subBtn: var(--tDarkGray);
-    --subBtnOn: var(--tDarkGrayOn);
-    --subBtnTxt: var(--tWhite);
+    --subBtn: var(--tLightGray);
+    --subBtnOn: var(--tLightGrayOn);
+    --subBtnTxt: var(--textSub);
 }
