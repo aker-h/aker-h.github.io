@@ -57,6 +57,7 @@
     --divHighlightDouble: #efefef;
     --itemHighlight: rgba(15, 20, 25, 0.1);
     --shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
+    --shadowColor: rgba(101, 119, 134, 0.2);
     --mainBtn: var(--favoColor);
     --mainBtnOn: var(--favoColorOn);
     --mainBtnDis: var(--favoColorDis);
