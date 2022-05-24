@@ -5,7 +5,7 @@ $(async() => {
         minutesRight = document.getElementById('minutesRight');
     
     const fix = (num) => {
-        return (`0${num}`).substring(-2);
+        return (`0${num}`).slice(-2);
     }
 
     const getStartLag = () => {
