@@ -17,6 +17,14 @@ head, body {
   height: calc(195px + 60px);
   background-color: white;
   display: inline-block;
+  mask-image: url("./number/mask.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 700px 255px;
+  -webkit-mask-image: url("./number/mask.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 700px 255px;
 }
 
 .off {
@@ -245,6 +253,8 @@ head, body {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: 155px 195px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .number.inner0 {

@@ -1,6 +1,6 @@
 (async() => {
-    let hourLeft     = document.getElementById('hourLeft'),
-        hourRight    = document.getElementById('hourRight'),
+    let hourLeft     = document.getElementById('hoursLeft'),
+        hourRight    = document.getElementById('hoursRight'),
         minutesLeft  = document.getElementById('minutesLeft'),
         minutesRight = document.getElementById('minutesRight');
     
