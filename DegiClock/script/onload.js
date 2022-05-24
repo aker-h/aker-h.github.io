@@ -1,4 +1,4 @@
-(async() => {
+$(async() => {
     let hourLeft     = document.getElementById('hoursLeft'),
         hourRight    = document.getElementById('hoursRight'),
         minutesLeft  = document.getElementById('minutesLeft'),
@@ -44,4 +44,4 @@
     set();
 
     setTimeout(loop, startLag)
-})();
+});

@@ -17,11 +17,11 @@ head, body {
     height: calc(195px + 60px);
     background-color: white;
     display: inline-block;
-    mask-image: url("./number/mask.png");
+    // mask-image: url("./number/mask.png");
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 700px 255px;
-    -webkit-mask-image: url("./number/mask.png");
+    // -webkit-mask-image: url("./number/mask.png");
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     -webkit-mask-size: 700px 255px;
@@ -58,6 +58,48 @@ head, body {
 
 #hoursLeft .number {
     left: 0px;
+
+    &.outer0 {
+        .inner1 {
+            top: var(--upper) !important;
+        }
+
+        .inner0 {
+            top: var(--middle) !important;
+        }
+
+        .inner2 {
+            top: var(--lower) !important;
+        }
+    }
+
+    &.outer1 {
+        .inner2 {
+            top: var(--upper) !important;
+        }
+
+        .inner1 {
+            top: var(--middle) !important;
+        }
+
+        .inner0 {
+            top: var(--lower) !important;
+        }
+    }
+
+    &.outer2 {
+        .inner0 {
+            top: var(--upper) !important;
+        }
+
+        .inner2 {
+            top: var(--middle) !important;
+        }
+
+        .inner1 {
+            top: var(--lower) !important;
+        }
+    }
 }
 
 #hoursRight .number {
@@ -66,6 +108,114 @@ head, body {
 
 #minutesLeft .number {
     left: 0px;
+
+    &.outer0 {
+        .inner1 {
+            top: var(--upper) !important;
+        }
+
+        .inner0 {
+            top: var(--middle) !important;
+        }
+
+        .inner5 {
+            top: var(--lower) !important;
+        }
+
+        .inner2, .inner3, .inner4 {
+            display: none;
+        }
+    }
+
+    &.outer1 {
+        .inner2 {
+            top: var(--upper) !important;
+        }
+
+        .inner1 {
+            top: var(--middle) !important;
+        }
+
+        .inner0 {
+            top: var(--lower) !important;
+        }
+
+        .inner3, .inner4, .inner5 {
+            display: none;
+        }
+    }
+
+    &.outer2 {
+        .inner3 {
+            top: var(--upper) !important;
+        }
+
+        .inner2 {
+            top: var(--middle) !important;
+        }
+
+        .inner1 {
+            top: var(--lower) !important;
+        }
+
+        .inner0, .inner4, .inner5 {
+            display: none;
+        }
+    }
+
+    &.outer3 {
+        .inner4 {
+            top: var(--upper) !important;
+        }
+
+        .inner3 {
+            top: var(--middle) !important;
+        }
+
+        .inner2 {
+            top: var(--lower) !important;
+        }
+
+        .inner0, .inner1,.inner5 {
+            display: none;
+        }
+    }
+
+    &.outer4 {
+        .inner5 {
+            top: var(--upper) !important;
+        }
+
+        .inner4 {
+            top: var(--middle) !important;
+        }
+
+        .inner3 {
+            top: var(--lower) !important;
+        }
+
+        .inner0, .inner1, .inner2 {
+            display: none;
+        }
+    }
+
+    &.outer5 {
+        .inner0 {
+            top: var(--upper) !important;
+        }
+
+        .inner5 {
+            top: var(--middle) !important;
+        }
+
+        .inner4 {
+            top: var(--lower) !important;
+        }
+
+        .inner0, .inner1, .inner2, .inner3 {
+            display: none;
+        }
+    }
 }
 
 #minutesRight .number {
