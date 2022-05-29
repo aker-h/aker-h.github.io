@@ -159,123 +159,123 @@ head, body {
 }
 
 #hoursRight .number.outer03 .inner4, #hoursRight .number.outer13 .inner4 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer03 .inner3, #hoursRight .number.outer13 .inner3 {
-  top: var(--middle);
+  top: var(--middle) !important;
   display: block;
 }
 
 #hoursRight .number.outer03 .inner2, #hoursRight .number.outer13 .inner2 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer23 .inner0 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer23 .inner3 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer23 .inner2 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer04 .inner5, #hoursRight .number.outer14 .inner5 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer04 .inner4, #hoursRight .number.outer14 .inner4 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer04 .inner3, #hoursRight .number.outer14 .inner3 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer05 .inner6, #hoursRight .number.outer15 .inner6 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer05 .inner5, #hoursRight .number.outer15 .inner5 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer05 .inner4, #hoursRight .number.outer15 .inner4 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer06 .inner7, #hoursRight .number.outer16 .inner7 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer06 .inner6, #hoursRight .number.outer16 .inner6 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer06 .inner5, #hoursRight .number.outer16 .inner5 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer07 .inner8, #hoursRight .number.outer17 .inner8 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer07 .inner7, #hoursRight .number.outer17 .inner7 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer07 .inner6, #hoursRight .number.outer17 .inner6 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer08 .inner9, #hoursRight .number.outer18 .inner9 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer08 .inner8, #hoursRight .number.outer18 .inner8 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer08 .inner7, #hoursRight .number.outer18 .inner7 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer09 .inner0, #hoursRight .number.outer19 .inner0 {
-  top: var(--upper);
-  display: block;
+  top: var(--upper) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer09 .inner9, #hoursRight .number.outer19 .inner9 {
-  top: var(--middle);
-  display: block;
+  top: var(--middle) !important;
+  display: block !important;
 }
 
 #hoursRight .number.outer09 .inner8, #hoursRight .number.outer19 .inner8 {
-  top: var(--lower);
-  display: block;
+  top: var(--lower) !important;
+  display: block !important;
 }
 
 #minutesLeft .number {
