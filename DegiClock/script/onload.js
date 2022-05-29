@@ -26,7 +26,7 @@ $(async() => {
             seconds = fix(now.getSeconds());
         
         let hLeft  = hours.charAt(0),
-            hRight = hours.charAt(1),
+            hRight = hours,
             mLeft  = minutes.charAt(0),
             mRight = minutes.charAt(1),
             sLeft  = seconds.charAt(0),

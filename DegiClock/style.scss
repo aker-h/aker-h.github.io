@@ -119,7 +119,196 @@ head, body {
 }
 
 #hoursRight .number {
-    left: 160px;
+    & .number {
+        left: 160px;
+    }
+
+    &.outer00, &.outer10, &.outer20 {
+        .inner1 {
+            top: var(--upper) !important;
+            display: block !important;
+        }
+
+        .inner0 {
+            top: var(--middle) !important;
+            display: block !important;
+        }
+
+        .inner2 {
+            top: var(--lower) !important;
+            display: block !important;
+        }
+    }
+
+    &.outer01, &.outer11, &.otuer21 {
+        .inner2 {
+            top: var(--upper) !important;
+            display: block !important;
+        }
+
+        .inner1 {
+            top: var(--middle) !important;
+            display: block !important;
+        }
+
+        .inner0 {
+            top: var(--lower) !important;
+            display: block !important;
+        }
+    }
+
+    &.outer02, &.outer12, &.outer22 {
+        .inner0 {
+            top: var(--upper) !important;
+            display: block !important;
+        }
+
+        .inner2 {
+            top: var(--middle) !important;
+            display: block !important;
+        }
+
+        .inner1 {
+            top: var(--lower) !important;
+            display: block !important;
+        }
+    }
+
+    &.outer03, &.outer13 {
+        .inner4 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner3 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner2 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+
+    &.outer23 {
+        .inner0 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner3 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner2 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+
+    &.outer04, &.outer14 {
+        .inner5 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner4 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner3 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+    
+    &.outer05, &.outer15  {
+        .inner6 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner5 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner4 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+    
+    &.outer06, &.outer16 {
+        .inner7 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner6 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner5 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+    
+    &.outer07, &.outer17{
+        .inner8 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner7 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner6 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+    
+    &.outer08, &.outer18 {
+        .inner9 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner8 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner7 {
+            top: var(--lower);
+            display: block;
+        }
+    }
+    
+    &.outer09, &.outer19 {
+        .inner0 {
+            top: var(--upper);
+            display: block;
+        }
+    
+        .inner9 {
+            top: var(--middle);
+            display: block;
+        }
+    
+        .inner8 {
+            top: var(--lower);
+            display: block;
+        }
+    }
 }
 
 #minutesLeft .number {
