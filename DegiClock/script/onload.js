@@ -21,16 +21,20 @@ $(async() => {
     const set = () => {
         let now = new Date();
 
-        let hours = fix(now.getHours() + 3),
+        let hours = fix(now.getHours() + 15),
             minutes = fix(now.getMinutes() + 35),
             seconds = fix(now.getSeconds());
         
         let hLeft  = hours.charAt(0),
-            hRight = hours,
+            hRight = hours.charAt(1),
             mLeft  = minutes.charAt(0),
             mRight = minutes.charAt(1),
             sLeft  = seconds.charAt(0),
             sRight = seconds.charAt(1);
+
+        if (hours === '23') {
+            hRight = '23';
+        }
 
         hourLeft.className     = `hours-inner left outer${hLeft}`;
         hourRight.className    = `hours-inner right outer${hRight}`;
