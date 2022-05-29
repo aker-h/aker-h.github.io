@@ -22,7 +22,7 @@ $(async() => {
         let now = new Date();
 
         let hours = fix(now.getHours() + 5),
-            minutes = fix(now.getMinutes() + 35),
+            minutes = fix(now.getMinutes() + 12),
             seconds = fix(now.getSeconds());
         
         let hLeft  = hours.charAt(0),
