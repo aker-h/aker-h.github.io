@@ -21,8 +21,8 @@ $(async() => {
     const set = () => {
         let now = new Date();
 
-        let hours = fix(now.getHours()),
-            minutes = fix(now.getMinutes()),
+        let hours = fix(now.getHours() + 3),
+            minutes = fix(now.getMinutes() + 45),
             seconds = fix(now.getSeconds());
         
         let hLeft  = hours.charAt(0),
