@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>hogehoge</title>
+        <style>
+            html {
+                background: white;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            .counter {
+                display: inline-block;
+            }
+
+            .digit {
+                display: block;
+                width: 80px;
+                height: 150px;
+                position: absolute;
+            }
+
+            .digit>div {
+                background-color: lightgrey;
+            }
+
+            .digit>div.on {
+                background-color: black;
+            }
+
+            .led-h {
+                position: absolute;
+                display: block;
+                width: 60px;
+                height: 10px;
+            }
+
+            .led-v {
+                position: absolute;
+                display: block;
+                width: 10px;
+                height: 60px;
+            }
+
+            .led-a {
+                top: 0;
+                left: 10px;
+            }
+
+            .led-b {
+                top: 10px;
+                right: 0;
+            }
+
+            .led-c {
+                right: 0;
+                bottom: 10px;
+            }
+
+            .led-d {
+                left: 10px;
+                bottom: 0;
+            }
+
+            .led-e {
+                left: 0;
+                bottom: 10px;
+            }
+
+            .led-f {
+                left: 0;
+                top: 10px;
+            }
+
+            .led-g {
+                left: 10px;
+                top: 70px;
+            }
+
+            #digitLeft {
+                top: 30px;
+                left: 30px;
+            }
+
+            #digitRight {
+                top: 30px;
+                left: 130px;
+            }
+
+            .button {
+                position: absolute;
+                left: 30px;
+                top: 200px;
+                display: block;
+                width: 100px;
+                height: 30px;
+                background: #1d9bf0;
+                border-color: #1d9bf0;
+                border-radius: 15px;
+                color: white;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .button:hover {
+                background-color: #1a8cd8;
+            }
+
+            #stopButton {
+                left: 150px;
+                background-color: transparent;
+                border: 1px solid black;
+                color: black;
+            }
+
+            #stopButton:hover {
+                background-color: #f7f7f7;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="counter">
+            <div class="digit" id="digitLeft">
+                <div class="led-h led-a"></div>
+                <div class="led-v led-b"></div>
+                <div class="led-v led-c"></div>
+                <div class="led-h led-d"></div>
+                <div class="led-v led-e"></div>
+                <div class="led-v led-f"></div>
+                <div class="led-h led-g"></div>
+            </div>
+    
+            <div class="digit" id="digitRight">
+                <div class="led-h led-a"></div>
+                <div class="led-v led-b"></div>
+                <div class="led-v led-c"></div>
+                <div class="led-h led-d"></div>
+                <div class="led-v led-e"></div>
+                <div class="led-v led-f"></div>
+                <div class="led-h led-g"></div>
+            </div>
+        </div>
+
+        <div class="button" id="startButton">START</div>
+
+        <div class="button" id="stopButton">STOP</div>
+        
+        <script>
+            (async () => {
+                //#define LOOP 50;
+                const LOOP = 100;
+
+                const HIGH = 'HIGH';
+                const LOW = 'LOW';
+
+                //ここに仕様する端子(PD◯◯) の情報を記述 (変数を定数として宣言
+                class Digit {
+                    constructor (divDigit /*: HTMLDivElement*/) {
+                        this.LED_A = divDigit.getElementsByClassName('led-a')[0];
+                        this.LED_B = divDigit.getElementsByClassName('led-b')[0];
+                        this.LED_C = divDigit.getElementsByClassName('led-c')[0];
+                        this.LED_D = divDigit.getElementsByClassName('led-d')[0];
+                        this.LED_E = divDigit.getElementsByClassName('led-e')[0];
+                        this.LED_F = divDigit.getElementsByClassName('led-f')[0];
+                        this.LED_G = divDigit.getElementsByClassName('led-g')[0];
+                    }
+                }
+
+                function degitalWrite (led /*: HTMLDivElement*/, input /*:string //HIGH || LOW*/) /*: void*/{
+                    if (input !== HIGH && input !== LOW) {
+                        const err = new Error('input is required "HIGH" or "LOW" of string.');
+                        throw err;
+                    }
+
+                    led.classList.remove('on', 'off');
+
+                    console.log(led.classList);
+
+                    if (input === HIGH) {
+                        led.classList.add('on');
+                        console.log('hogehoge');
+                        return;
+                    } else if (input === LOW) {
+                        led.classList.add('off');
+                        console.log('piyopiyo');
+                        return;
+                    }
+
+                    console.log(led.classList);
+                }
+
+                //ここにダイナミック点灯のプログラムで必要になる変数を宣言
+                
+                let digitLeft /*: Digit*/;
+                let digitRight /*: Digit*/;
+
+                function setup () /*: void*/ {
+                    //ここに使用する端子(PD◯◯)の入出力先の設定を記述
+                    digitLeft = new Digit(document.getElementById('digitLeft'));
+                    digitRight = new Digit(document.getElementById('digitRight'));
+                }
+
+                function num0 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, HIGH);
+                    degitalWrite(digit.LED_F, HIGH);
+                    degitalWrite(digit.LED_G, LOW);
+                }
+
+                function num1 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, LOW);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, LOW);
+                    degitalWrite(digit.LED_E, LOW);
+                    degitalWrite(digit.LED_F, LOW);
+                    degitalWrite(digit.LED_G, LOW);
+                }
+
+                function num2 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, LOW);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, HIGH);
+                    degitalWrite(digit.LED_F, LOW);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num3 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, LOW);
+                    degitalWrite(digit.LED_F, LOW);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num4 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, LOW);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, LOW);
+                    degitalWrite(digit.LED_E, LOW);
+                    degitalWrite(digit.LED_F, HIGH);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num5 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, LOW);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, LOW);
+                    degitalWrite(digit.LED_F, HIGH);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num6 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, LOW);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, LOW);
+                    degitalWrite(digit.LED_F, HIGH);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num7 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, HIGH);
+                    degitalWrite(digit.LED_F, LOW);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num8 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, HIGH);
+                    degitalWrite(digit.LED_F, HIGH);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                function num9 (digit /*Digit*/) /*: void*/  {
+                    degitalWrite(digit.LED_A, HIGH);
+                    degitalWrite(digit.LED_B, HIGH);
+                    degitalWrite(digit.LED_C, HIGH);
+                    degitalWrite(digit.LED_D, HIGH);
+                    degitalWrite(digit.LED_E, LOW);
+                    degitalWrite(digit.LED_F, HIGH);
+                    degitalWrite(digit.LED_G, HIGH);
+                }
+
+                async function sleep (ms) {
+                    return new Promise (async (resolve) => {
+                        await setTimeout(() => {resolve()}, ms);
+                    });
+                }
+
+                let running = false;
+                let stopFlag = false;
+                
+                async function loop () /*: void*/ {
+                    for (let j = 0; j < LOOP; j++) {
+                        if (stopFlag === true) {
+                            return new Promise((resolve) => {
+                                stopFlag = false;
+                                running = false;
+                                resolve();
+                            });
+                        }
+                        //ここにダイナミック点灯のプログラムを記述
+                        function output (digit /*: Digit*/, num /*: string*/) /*: void*/ {
+                            switch (num) {
+                                case '0': {
+                                    num0(digit);
+                                    return;
+                                }
+                                case '1': {
+                                    num1(digit);
+                                    return;
+                                }
+                                case '2': {
+                                    num2(digit);
+                                    return;
+                                }
+                                case '3': {
+                                    num3(digit);
+                                    return;
+                                }
+                                case '4': {
+                                    num4(digit);
+                                    return;
+                                }
+                                case '5': {
+                                    num5(digit);
+                                    return;
+                                }
+                                case '6': {
+                                    num6(digit);
+                                    return;
+                                }
+                                case '7': {
+                                    num7(digit);
+                                    return;
+                                }
+                                case '8': {
+                                    num8(digit);
+                                    return;
+                                }
+                                case '9': {
+                                    num9(digit);
+                                    return;
+                                }
+                            }
+                        }
+
+                        const num = ('0' + j).slice(-2);
+
+                        console.log(num);
+
+                        const left = num.charAt(0);
+                        const right = num.charAt(1);
+
+                        output(digitLeft, left);
+                        output(digitRight, right);
+
+                        await sleep(750);
+                    }
+                    running = false;
+                }
+
+                
+
+                document.getElementById('startButton').addEventListener('click', () => {
+                    if (running === false) {
+                        setup();
+                        loop();
+
+                        running = true;
+                    }                    
+                });
+
+                document.getElementById('stopButton').addEventListener('click', () => {
+                    stopFlag = true;
+                });
+            })();
+        </script>
+    </body>
+</html>
