@@ -118,8 +118,31 @@ head, body {
     }
 }
 
-#hoursRight .number {
-    left: 160px;
+#hoursRight {
+    & .number {
+        left: 160px;
+    }
+
+    &.outer23 {
+        .inner0 {
+            top: var(--upper) !important;
+            display: block !important;
+        }
+    
+        .inner3 {
+            top: var(--middle) !important;
+            display: block !important;
+        }
+    
+        .inner2 {
+            top: var(--lower) !important;
+            display: block !important;
+        }
+
+        .inner4 {
+            display: none !important;
+        }
+    }
 }
 
 #minutesLeft .number {

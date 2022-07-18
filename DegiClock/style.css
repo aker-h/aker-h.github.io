@@ -113,6 +113,25 @@ head, body {
   left: 160px;
 }
 
+#hoursRight.outer23 .inner0 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#hoursRight.outer23 .inner3 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#hoursRight.outer23 .inner2 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#hoursRight.outer23 .inner4 {
+  display: none !important;
+}
+
 #minutesLeft .number {
   left: 0px;
 }
@@ -758,4 +777,3 @@ head, body {
   mask-image: url("./number/9.png");
   -webkit-mask-image: url("./number/9.png");
 }
-/*# sourceMappingURL=style.css.map */

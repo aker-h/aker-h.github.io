@@ -32,6 +32,10 @@ $(async() => {
             sLeft  = seconds.charAt(0),
             sRight = seconds.charAt(1);
 
+        if (hours === '23') {
+            hRight = '23';
+        }
+
         hourLeft.className     = `hours-inner left outer${hLeft}`;
         hourRight.className    = `hours-inner right outer${hRight}`;
         minutesLeft.className  = `minutes-inner left outer${mLeft}`;
