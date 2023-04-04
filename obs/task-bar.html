@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            :root {
+                --bg-color-brown: rgb(145, 96, 99);
+                --border-color-white: rgba(255, 255, 255, 0.5);
+                --border-color-brown: rgb(85, 47, 49);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0;
+                display: block;
+                width: 1920px;
+                height: 49px;
+                background-color: transparent;
+            }
+
+            html {
+                overflow-x: hidden;
+            }
+
+            div.wrapper {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: flex;
+                width: 100%;
+                height: 100%;
+                border-top: 1px solid var(--border-color-brown);
+                background-color: var(--bg-color-brown);
+                flex-flow: row;
+            }
+
+            div.wrapper > div {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-flex;
+                height: 100%;
+            }
+
+            div.main {
+                width: 100%;
+            }
+
+            div.calender-outer {
+                width: fit-content;
+            }
+
+            div.calender-inner {
+                position: relative;
+                top: 50%;
+                left: 0;
+                transform: translate(0, -50%);
+                width: fit-content;
+                height: fit-content;
+                color: white;
+            }
+
+            div.calender-inner > div {
+                position: relative;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+                display: block;
+                width: fit-content;
+                height: fit-content;
+                font-size: 14px;
+            }
+
+            div.notification {
+                width: 54px;
+            }
+
+            div.show-desktop {
+                width: 5px;
+                border-left: 1px solid var(--border-color-white);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="main"></div>
+            <div class="calendar-outer">
+                <div class="calender-inner">
+                    <div class="calender-time" id="calenderTime">23:59</div>
+                    <div class="calender-date" id="calenderDate">1942/06/06</div>
+                </div>
+            </div>
+            <div class="notification"></div>
+            <div class="show-desktop"></div>
+        </div>
+        <script id="scriptCalender">
+            class Calender {
+                constructor () {
+                    this._date = new Date();
+                    this._calenderTime = this._elm('div#calenderTime');
+                    this._calenderDate = this._elm('div#calenderDate');
+                    this._initDistanceMillSeconds = 1000; //1秒のミリ秒
+                    this._initDistanceSeconds = 60;    //1分の秒
+                }
+
+                async boot () {
+                    const DISTANCE = 60000; //1分間のミリ秒 (1000ms * 60s)
+
+                    await this._wait(this._initDistanceMillSeconds);                    
+                    this._addInitDistanceMillSeconds();
+
+                    (async () => {
+                        setInterval(() => {
+                            console.log(new Date().toLocaleString());
+                        }, 1000);
+                    })();
+
+                    this._updateInitDistanceSeconds();
+                    await this._wait(this._initDistanceSeconds * 1000);
+                    this._addInitDistanceSeconds();
+                    
+                    this._updateTime();
+                    this._updateDate();
+
+                    (async () => {
+                        setInterval(() => {
+                            this._addAMinute();
+
+                            this._updateTime();
+                            this._updateDate();
+                            console.clear();
+                        }, DISTANCE);
+                    })();     
+                }
+
+                init () {
+                    this._updateTime();
+                    this._updateDate();
+                    
+                    this._initDistanceMillSeconds -= this._date.getMilliseconds();
+                }
+
+                _addAMinute () {
+                    this._date.setMinutes(this._date.getMinutes() + 1);
+                }
+
+                _addInitDistanceMillSeconds () { this._date.setMilliseconds(this._date.getMilliseconds() + this._initDistanceMillSeconds); }
+                _addInitDistanceSeconds () { this._date.setSeconds(this._date.getSeconds() + this._initDistanceSeconds); }
+
+                _elm (selector) { return document.querySelector(selector); }
+                _fixDigit (number) { return `0${number}`.slice(-2); }
+
+                _updateDate () { this._calenderDate.textContent = `${this._date.getFullYear()}/${this._fixDigit(this._date.getMonth() + 1)}/${this._fixDigit(this._date.getDate())}`; }
+
+                _updateInitDistanceSeconds () {
+                    this._initDistanceSeconds -= this._date.getSeconds();
+                }
+
+                _updateTime () { this._calenderTime.textContent = `${this._date.getHours()}:${this._fixDigit(this._date.getMinutes())}`; }
+
+                async _wait (ms) { return new Promise((resolve) => {setTimeout(() => { resolve(); }, ms)}); }
+            }
+        </script>
+        <script id="scriptOnload">
+            (async () => {
+                const calender = new Calender();
+                calender.init();
+
+                console.log(calender);
+
+                calender.boot();
+            })();
+        </script>
+    </body>
+</html>

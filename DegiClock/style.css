@@ -1,0 +1,779 @@
+:root {
+  --upper: -195px;
+  --middle: 30px;
+  --lower: 255px;
+  --secUpper: -157px;
+  --secMiddle: 0px;
+  --secLower: 157px;
+}
+
+head, body {
+  margin: 0;
+  padding: 0;
+  background-color: lime;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 892px;
+  height: calc(195px + 60px);
+  background-color: lime;
+  display: inline-block;
+  mask-image: url("./number/mask.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 892px 255px;
+  -webkit-mask-image: url("./number/mask.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 892px 255px;
+}
+
+.off {
+  display: none;
+}
+
+.semicolon {
+  background-color: white;
+  position: absolute;
+  left: 320px;
+  top: 30px;
+  display: block;
+  width: 60px;
+  height: 195px;
+  mask-image: url("./number/semicolon.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url("./number/semicolon.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.hours-outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 320px;
+  height: 255px;
+}
+
+#hoursLeft .number {
+  left: 0px;
+}
+
+#hoursLeft.outer0 .inner1 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer0 .inner0 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer0 .inner2 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer1 .inner2 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer1 .inner1 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer1 .inner0 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer2 .inner0 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer2 .inner2 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#hoursLeft.outer2 .inner1 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#hoursRight .number {
+  left: 160px;
+}
+
+#hoursRight.outer23 .inner0 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#hoursRight.outer23 .inner3 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#hoursRight.outer23 .inner2 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#hoursRight.outer23 .inner4 {
+  display: none !important;
+}
+
+#minutesLeft .number {
+  left: 0px;
+}
+
+#minutesLeft .number.outer0 .inner1 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer0 .inner0 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer0 .inner5 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer1 .inner2 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer1 .inner1 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer1 .inner0 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer2 .inner3 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer2 .inner2 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer2 .inner1 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer3 .inner4 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer3 .inner3 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer3 .inner2 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer4 .inner5 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer4 .inner4 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer4 .inner3 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer5 .inner0 {
+  top: var(--upper) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer5 .inner5 {
+  top: var(--middle) !important;
+  display: block !important;
+}
+
+#minutesLeft .number.outer5 .inner4 {
+  top: var(--lower) !important;
+  display: block !important;
+}
+
+#minutesRight .number {
+  left: 160px;
+}
+
+.minutes-outer {
+  position: absolute;
+  top: 0;
+  left: 380px;
+  display: block;
+  width: 320px;
+  height: 255px;
+}
+
+.outer0 .inner1 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer0 .inner0 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer0 .inner9 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer1 .inner2 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer1 .inner1 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer1 .inner0 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer2 .inner3 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer2 .inner2 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer2 .inner1 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer3 .inner4 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer3 .inner3 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer3 .inner2 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer4 .inner5 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer4 .inner4 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer4 .inner3 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer5 .inner6 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer5 .inner5 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer5 .inner4 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer6 .inner7 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer6 .inner6 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer6 .inner5 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer7 .inner8 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer7 .inner7 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer7 .inner6 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer8 .inner9 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer8 .inner8 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer8 .inner7 {
+  top: var(--lower);
+  display: block;
+}
+
+.outer9 .inner0 {
+  top: var(--upper);
+  display: block;
+}
+
+.outer9 .inner9 {
+  top: var(--middle);
+  display: block;
+}
+
+.outer9 .inner8 {
+  top: var(--lower);
+  display: block;
+}
+
+.number {
+  background-color: white;
+  position: absolute;
+  display: none;
+  width: 160px;
+  height: 195px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 155px 195px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 155px 195px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.number.inner0 {
+  mask-image: url("./number/0.png");
+  -webkit-mask-image: url("./number/0.png");
+}
+
+.number.inner1 {
+  mask-image: url("./number/1.png");
+  -webkit-mask-image: url("./number/1.png");
+}
+
+.number.inner2 {
+  mask-image: url("./number/2.png");
+  -webkit-mask-image: url("./number/2.png");
+}
+
+.number.inner3 {
+  mask-image: url("./number/3.png");
+  -webkit-mask-image: url("./number/3.png");
+}
+
+.number.inner4 {
+  mask-image: url("./number/4.png");
+  -webkit-mask-image: url("./number/4.png");
+}
+
+.number.inner5 {
+  mask-image: url("./number/5.png");
+  -webkit-mask-image: url("./number/5.png");
+}
+
+.number.inner6 {
+  mask-image: url("./number/6.png");
+  -webkit-mask-image: url("./number/6.png");
+}
+
+.number.inner7 {
+  mask-image: url("./number/7.png");
+  -webkit-mask-image: url("./number/7.png");
+}
+
+.number.inner8 {
+  mask-image: url("./number/8.png");
+  -webkit-mask-image: url("./number/8.png");
+}
+
+.number.inner9 {
+  mask-image: url("./number/9.png");
+  -webkit-mask-image: url("./number/9.png");
+}
+
+.seconds-outer {
+  position: absolute;
+  top: 100px;
+  left: 700px;
+  display: block;
+  width: 192px;
+  height: 120px;
+}
+
+#secondsLeft, .mini-number {
+  left: 0px;
+}
+
+#secondsLeft.outer0 .inner1, .mini-number.outer0 .inner1 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer0 .inner0, .mini-number.outer0 .inner0 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer0 .inner5, .mini-number.outer0 .inner5 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer1 .inner2, .mini-number.outer1 .inner2 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer1 .inner1, .mini-number.outer1 .inner1 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer1 .inner0, .mini-number.outer1 .inner0 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer2 .inner3, .mini-number.outer2 .inner3 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer2 .inner2, .mini-number.outer2 .inner2 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer2 .inner1, .mini-number.outer2 .inner1 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer3 .inner4, .mini-number.outer3 .inner4 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer3 .inner3, .mini-number.outer3 .inner3 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer3 .inner2, .mini-number.outer3 .inner2 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer4 .inner5, .mini-number.outer4 .inner5 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer4 .inner4, .mini-number.outer4 .inner4 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer4 .inner3, .mini-number.outer4 .inner3 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer5 .inner0, .mini-number.outer5 .inner0 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer5 .inner5, .mini-number.outer5 .inner5 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsLeft.outer5 .inner4, .mini-number.outer5 .inner4 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight .mini-number {
+  left: 96px;
+}
+
+#secondsRight.outer0 .inner1 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer0 .inner0 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer0 .inner9 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer1 .inner2 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer1 .inner1 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer1 .inner0 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer2 .inner3 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer2 .inner2 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer2 .inner1 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer3 .inner4 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer3 .inner3 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer3 .inner2 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer4 .inner5 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer4 .inner4 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer4 .inner3 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer5 .inner6 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer5 .inner5 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer5 .inner4 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer6 .inner7 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer6 .inner6 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer6 .inner5 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer7 .inner8 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer7 .inner7 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer7 .inner6 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer8 .inner9 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer8 .inner8 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer8 .inner7 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+#secondsRight.outer9 .inner0 {
+  top: var(--secUpper) !important;
+  display: block !important;
+}
+
+#secondsRight.outer9 .inner9 {
+  top: var(--secMiddle) !important;
+  display: block !important;
+}
+
+#secondsRight.outer9 .inner8 {
+  top: var(--secLower) !important;
+  display: block !important;
+}
+
+.mini-number {
+  background-color: white;
+  position: absolute;
+  display: none;
+  width: 96px;
+  height: 117px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 93px 117px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 93px 117px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.mini-number.inner0 {
+  mask-image: url("./number/0.png");
+  -webkit-mask-image: url("./number/0.png");
+}
+
+.mini-number.inner1 {
+  mask-image: url("./number/1.png");
+  -webkit-mask-image: url("./number/1.png");
+}
+
+.mini-number.inner2 {
+  mask-image: url("./number/2.png");
+  -webkit-mask-image: url("./number/2.png");
+}
+
+.mini-number.inner3 {
+  mask-image: url("./number/3.png");
+  -webkit-mask-image: url("./number/3.png");
+}
+
+.mini-number.inner4 {
+  mask-image: url("./number/4.png");
+  -webkit-mask-image: url("./number/4.png");
+}
+
+.mini-number.inner5 {
+  mask-image: url("./number/5.png");
+  -webkit-mask-image: url("./number/5.png");
+}
+
+.mini-number.inner6 {
+  mask-image: url("./number/6.png");
+  -webkit-mask-image: url("./number/6.png");
+}
+
+.mini-number.inner7 {
+  mask-image: url("./number/7.png");
+  -webkit-mask-image: url("./number/7.png");
+}
+
+.mini-number.inner8 {
+  mask-image: url("./number/8.png");
+  -webkit-mask-image: url("./number/8.png");
+}
+
+.mini-number.inner9 {
+  mask-image: url("./number/9.png");
+  -webkit-mask-image: url("./number/9.png");
+}

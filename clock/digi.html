@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            
+            .wrapper {
+                margin: 0;
+                width: 1000px;
+                height: 300px;
+                background-color: white;
+                display: flex;
+            }
+
+            .wrapper.green {
+                background-color: #00ff00;
+            }
+
+            .red {
+                border: 1px solid red;
+                background-color: #ff000044;
+            }
+
+            .green {
+                border: 1px solid green;
+                background-color: #00ff0044;
+            }
+
+            .blue {
+                border: 1px solid blue;
+                background-color: #0000ff44;
+            }
+
+            .hour, .center, .minu {
+                display: inline-block;
+                width: 300px;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="hour red"></div>
+            <div class="center green"></div>
+            <div class="minu blue"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,1704 @@
+:root {
+    --width-outer: 800px;
+    --height-outer: 400px;
+
+    --radius-body: 24px;
+
+    --color-bg-blown: rgb(85, 55, 56);
+    
+    --segment-color: rgba(255, 255, 255, 1);
+    --segment-color-blink: rgba(255, 255, 255, 0.75);
+
+    --duration-blinking: 3s;
+    --style-blinking:infinite;
+}
+
+@keyframes blinking-border {
+    0% {
+        border-color: var(--segment-color)
+    }
+    50% {
+        border-color: var(--segment-color-blink);
+    }
+
+    100% {
+        border-color: var(--segment-color)
+    }
+}
+
+@keyframes blinking-bgc {
+    0% {
+        background-color: var(--segment-color)
+    }
+    50% {
+        background-color: var(--segment-color-blink);
+    }
+
+    100% {
+        background-color: var(--segment-color)
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    display: block;
+    width: var(--width-outer);
+    height: var(--height-outer);
+    background-color: transparent;
+}
+
+html > body > div.clock-frame {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-body);
+    background-color: var(--color-bg-blown);
+    overflow: hidden;
+
+    & > div.clock-outer {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        width: calc(100% - 8px);
+        height: calc(100% - 8px);
+        border-radius: var(--radius-body);
+        background-color: var(--color-bg-blown);
+        box-shadow: -8px -8px 8px 8px rgba(255, 255, 255, 0.05), 8px 8px 8px 8px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+
+        & > div.clock-inner {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            display: block;
+            width: fit-content;
+            height: fit-content;
+
+            & > div.colon-outer {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                width: fit-content;
+                height: 144px;
+                transform: skew(-7deg);
+
+                & > div.colon-inner {
+                    position: relative;
+                    top: 50%;
+                    left: 0;
+                    transform: translate(0, -50%);
+                    display: block;
+                    width: fit-content;
+                    height: fit-content;
+
+                    & > div {
+                        position: relative;
+                        top: 0;
+                        left: 0;
+                        display: block;
+                        width: 16px;
+                        height: 16px;
+                        animation-name: blinking-bgc;
+                        animation-duration: var(--duration-blinking);
+                        animation-iteration-count: var(--style-blinking);
+
+                        &.colon-lower {
+                            margin-top: 32px;
+                        }
+                    }
+                }                
+            }
+        }
+
+        & > div.date-inner {
+            position: absolute;
+            top: 17%;
+            left: 9%;
+            display: block;
+            width: fit-content;
+            height: 71px;
+            transform: skew(-7deg) scale(70%);
+
+            & > div {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                height: 71px;
+
+                &.space {
+                    width: 21px !important;
+                }
+            }
+        }
+
+        & > div.highlight {
+            position: absolute;
+            top: 10px;
+            left: -100px;
+            display: block;
+            width: 400px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: rotate(-45deg);
+
+            &._ {
+                top: 100px;
+                left: -200px;
+                width: 800px;
+                height: 20px;
+            }
+        }
+
+        & > div.shadow {
+            position: absolute;
+            top: 200px;
+            left: 450px;
+            display: block;
+            width: 600px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: rotate(-45deg);
+        }
+
+        & div.glass {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 120% !important;
+            height: 120% !important;
+            backdrop-filter: blur(1px);
+        }
+    }
+}
+
+div.seven-segments-outer {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 99px;
+    height: 144px;
+
+    & > div.segment {
+        position: absolute;
+        opacity: 0.025;
+        transition: opacity .25s ease;
+
+        &.center {
+            width: 64px;
+            height: 16px;
+
+            & > div.trapezoid{
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 64px;
+                height: 8px;                
+                border-style: solid;
+                
+                &.upper {
+                    border-width: 0 8px 8px 8px;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-left-color: transparent !important;    
+                }
+
+                &.lower {
+                    top: -1px;
+                    border-width: 8px 8px 0 8px;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+            }
+        }
+
+        &.horizontal {
+            display: block;
+            top: 0;
+            left: 0;
+            width: 64px;
+            height: 12px;
+
+            & > div.trapezoid{
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 64px;               
+                border-style: solid;
+                
+                &.upper {
+                    height: 4px;
+                    border-width: 0 8px 4px 8px;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.lower {
+                    top: -1px;
+                    border-width: 8px 8px 0 8px;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+            }
+        }
+
+        &.vertical {
+            display: inline-flex !important;
+            width: 16px;
+            height: 64px;
+            flex-flow: row;
+            transform: rotate(7.5deg);
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                display: flexbox;
+                width: 8px;
+                height: 64px;
+                border-style: solid;
+
+                &.left {
+                    left: 0;
+                    border-width: 10px 8px 6px 0;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.right {
+                    left: -1px;
+                    border-width: 6px 0 10px 8px;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;                
+                }
+            }
+        }
+
+        &.a {
+            top: 0;
+            left: 26px;
+        }
+
+        &.b {
+            top: 7px;
+            left: 80px;
+        }
+
+        &.c {
+            top: 75px;
+            left: 70px;
+        }
+        
+        &.d {
+            transform: rotate(180deg);
+            top: 132px;
+            left: 8px;
+        }
+
+        &.e {
+            top: 75px;
+            left: 3px;
+        }
+
+        &.f {
+            top: 7px;
+            left: 13px;
+        }
+
+        &.g {
+            top: 65px;
+            left: 17px;
+        }
+    }
+
+    &.on0 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+    }
+    
+    &.on1 > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+    }
+
+    &.on2 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+    }
+    
+    &.on3 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+    }  
+
+    &.on4 > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+    }
+    
+    &.on5 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+    }
+
+    &.on6 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+    }
+    
+    &.on7 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+    }  
+
+    &.on8 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+    }
+    
+    &.on9 > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+    } 
+}
+
+div.fourteen-segments-outer {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 42px;
+    height: 71px;
+
+    & > div.segment {
+        position: absolute;
+        opacity: 0;
+
+        &.center {
+            width: 32px;
+            height: 8px;
+
+            & > div.trapezoid{
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 15.5px;
+                height: 4px;                
+                border-style: solid;
+                
+                &.upper {
+                    border-width: 0 4px 4px 4px;
+                
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-left-color: transparent !important;    
+                }
+
+                &.lower {
+                    border-width: 4px 4px 0 4px;                
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+            }
+        }
+
+        &.diagonal {
+            display: block;
+            width: 8px;
+            height: 25px;
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                width: 4px;
+                height: 25px;
+                border-style: solid;
+
+                &.left {
+                    border-width: 15px 4px 1.15px 0;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.right {
+                    border-width: 1.15px 0 15px 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;  
+                }
+            }
+        }
+
+        &.horizontal {
+            display: block;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 6px;
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 32px;               
+                border-style: solid;             
+                
+                &.upper {
+                    height: 2px;
+                    border-width: 0 4px 2px 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.lower {
+                    border-width: 4px 4px 0 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+            }
+        }
+
+        &.vertical {
+            display: inline-flex !important;
+            width: 8px;
+            height: 32px;
+            flex-flow: row;
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: flexbox;
+                width: 4px;
+                height: 32px;
+                border-style: solid;
+
+                &.left {
+                    border-width: 4px 4px 4px 0;
+    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.right {
+                    border-width: 4px 0 4px 4px;
+                
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;  
+                }
+            }
+        }
+
+        &.vertical_ {
+            display: block;
+            width: 8px;
+            height: 27px;
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                width: 4px;
+                height: 27px;
+                border-style: solid;
+
+                &.left {
+                    border-width: 0 4px 4px 0;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.right {
+                    border-width: 0 0 4px 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;       
+                }
+            }
+        }
+
+        &.a {
+            top: 0;
+            left: 5px;
+        }
+
+        &.b {
+            top: 3px;
+            left: 33.5px;
+        }
+
+        &.c {
+            top: 36px;
+            left: 33.5px;
+        }
+
+        &.d {
+            top: 65px;
+            left: 5px;
+            transform: rotateX(180deg);
+        }
+
+        &.e {
+            top: 36px;
+            left: 0px;
+        }
+
+        &.f {
+            top: 3px;
+            left: 0;
+        }
+
+        &.g {
+            top: 31.5px;
+            left: 5px;
+        }
+
+        &.h {
+            top: 31.5px;
+            left: 5px;
+            transform: rotate(180deg);
+        }
+
+        &.i {
+            top: 6.5px;
+            left: 8.5px;
+            transform: rotate(165deg);
+        }
+
+        &.j {
+            top: 7px;
+            left: 17px;
+        }
+
+        &.k {
+            top: 6.5px;
+            left: 25.5px;
+            transform: rotateX(180deg) rotate(164deg) ;
+        }
+
+        &.l {
+            top: 40px;
+            left: 8.5px;
+            transform: rotateX(180deg) rotate(164deg);
+        }
+
+        &.m {
+            top: 37px;
+            left: 17px;
+            transform: rotate(180deg);
+        }
+
+        &.n {
+            top: 40px;
+            left: 25.5px;
+            transform: rotate(164deg) ;
+        }
+    }
+
+    &.on0 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }    
+
+    &.on1 > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+    
+    &.on2 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.on3 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.on4 > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.on5 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.on6 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.on7 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.on8 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }    
+    }
+
+    &.on9 > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.onA > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.onD > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 1; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 1; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.onF > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }    
+    }
+
+    &.onJ > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }    
+    }
+
+    &.onM > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 1; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }    
+    }
+
+    &.onN > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 1; }
+    }
+
+    &.onO > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.onS > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 1; }
+        &.d { opacity: 1; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.onT > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 1; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 1; }
+        &.n { opacity: 0.025; }
+    }
+
+    &.onW > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 1; }
+        &.c { opacity: 1; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 1; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 1; }
+    }
+}
+
+div.sixteen-segments-outer {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 42px;
+    height: 71px;
+
+    & > div.segment {
+        position: absolute;
+        opacity: 0;
+
+        &.center {
+            width: 32px;
+            height: 8px;
+
+            & > div.trapezoid{
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 15.5px;
+                height: 4px;                
+                border-style: solid;        
+                
+                &.upper {
+                    border-width: 0 4px 4px 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-left-color: transparent !important;   
+                }
+
+                &.lower {
+                    border-width: 4px 4px 0 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+            }
+        }
+
+        &.diagonal {
+            display: block;
+            width: 8px;
+            height: 25px;
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                width: 4px;
+                height: 25px;
+                border-style: solid;
+
+                &.left {
+                    border-width: 15px 4px 1.15px 0;
+                    // border-color: transparent  var(--segment-color) transparent transparent;
+
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+    
+                &.right {
+                    border-width: 1.15px 0 15px 4px;
+                    // border-color: transparent transparent transparent var(--segment-color);
+
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;  
+                }
+            }
+        }
+
+        &.horizontal {
+            display: block;
+            top: 0;
+            left: 0;
+            width: 31px;
+            height: 6px;
+
+            & > div.trapezoid{
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 16px;               
+                border-style: solid;
+                
+                &.upper {
+                    height: 2px;
+                    border-width: 0 0px 2px 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.lower {
+                    border-width: 4px 4px 0 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+            }
+        }
+
+        &.vertical {
+            display: inline-flex !important;
+            width: 8px;
+            height: 32px;
+            flex-flow: row;
+
+            & > div.trapezoid {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: flexbox;
+                width: 4px;
+                height: 32px;
+                border-style: solid;
+
+                &.left {
+                    border-width: 4px 4px 4px 0;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-bottom-color: transparent !important;
+                    border-left-color: transparent !important;
+                }
+
+                &.right {
+                    border-width: 4px 0 4px 4px;
+                    
+                    animation-name: blinking-border;
+                    animation-duration: var(--duration-blinking);
+                    animation-iteration-count: var(--style-blinking);
+                    
+                    border-top-color: transparent !important;
+                    border-right-color: transparent !important;
+                    border-bottom-color: transparent !important;  
+                }
+            }
+        }
+
+        &.a {
+            top: 0;
+            left: 5px;
+        }
+    
+        &.b {
+            top: 0;
+            left: 7px;
+            transform: rotateY(180deg);
+        }
+    
+        &.c {
+            top: 3px;
+            left: 33.5px;
+        }
+    
+        &.d {
+            top: 36px;
+            left: 33.5px;
+        }
+    
+        &.e {
+            top: 65px;
+            left: 7px;
+            transform: rotate(180deg);
+        }
+    
+        &.f {
+            top: 65px;
+            left: 4px;
+            transform: rotateX(180deg);                
+        }
+    
+        &.g {
+            top: 36px;
+            left: 0px;
+           
+        }
+    
+        &.h {
+            top: 3px;
+            left: 0;
+            
+        }
+    
+        &.i {
+            top: 31.5px;
+            left: 5px;                
+        }
+    
+        &.j {
+            top: 31.5px;
+            left: 5px;
+            transform: rotate(180deg);
+            
+        }
+    
+        &.k {
+            top: 6.5px;
+            left: 8.5px;
+            transform: rotate(165deg);
+            
+        }
+    
+        &.l {
+            top: 3px;
+            left: 17px;
+        }
+    
+        &.m {
+            top: 6.5px;
+            left: 25.5px;
+            transform: rotateX(180deg) rotate(164deg) ;
+        }
+    
+        &.n {
+            top: 40px;
+            left: 8.5px;
+            transform: rotateX(180deg) rotate(164deg);
+        }
+    
+        &.o {
+            top: 37px;
+            left: 17px;
+        }
+    
+        &.p {
+            top: 40px;
+            left: 25.5px;
+            transform: rotate(164deg) ;
+        }
+    }
+
+    &.ona > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }    
+
+    &.onb > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onc > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.ond > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 1; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.one > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 1; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.ong > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 1; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 1; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onh > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.oni > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onl > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onn > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.ono > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onp > div.segment {
+        &.a { opacity: 1; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 1; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onr > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.ons > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 1; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 1; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 1; }
+    }
+
+    &.ont > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 1; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onu > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.onv > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 0.025; }
+        &.g { opacity: 1; }
+        &.h { opacity: 0.025; }
+        &.i { opacity: 0.025; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 0.025; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 1; }
+        &.o { opacity: 0.025; }
+        &.p { opacity: 0.025; }
+    }
+
+    &.ony > div.segment {
+        &.a { opacity: 0.025; }
+        &.b { opacity: 0.025; }
+        &.c { opacity: 0.025; }
+        &.d { opacity: 0.025; }
+        &.e { opacity: 0.025; }
+        &.f { opacity: 1; }
+        &.g { opacity: 0.025; }
+        &.h { opacity: 1; }
+        &.i { opacity: 1; }
+        &.j { opacity: 0.025; }
+        &.k { opacity: 0.025; }
+        &.l { opacity: 1; }
+        &.m { opacity: 0.025; }
+        &.n { opacity: 0.025; }
+        &.o { opacity: 1; }
+        &.p { opacity: 0.025; }
+    }
+}

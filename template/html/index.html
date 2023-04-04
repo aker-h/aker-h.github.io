@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://aker-h.github.io/js/twitter/install-theme.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+        <style>
+            body {
+                overflow-y: hidden;
+            }
+
+            div.card {
+                position: relative;
+                top: 30px;
+                left: 30px;
+                display: block;
+                border-radius: 32px;
+                width: 640px;
+                height: fit-content;
+                padding: 32px;
+                font-size: 20px;
+            }
+
+            .card p {
+                display: block;
+                width: 568px;
+                height: max-content;
+                overflow-y: hidden;
+                overflow-x: overlay;
+            }
+
+            .card p::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+
+            .card p::-webkit-scrollbar-thumb {
+                border-radius: 4px;
+                background: var(--color-primary);
+            }
+
+            .card p pre {
+                font-family: 'JetBrains Mono';
+                --yellow: rgb(232, 191, 106);
+                --white: rgb(186, 186, 186);
+                --green: rgb(106, 135, 89);
+                --code: rgb(161, 175, 193);
+                --high-yellow: rgb(235, 209, 4);
+                --pink: rgb(207, 109, 208);
+                --purple: rgb(152, 118, 170);
+                --blue: rgb(33, 159, 255);
+                --orange: rgb(204, 120, 49)
+            }
+
+            pre yellow {
+                color: var(--yellow);
+            }
+
+            pre white {
+                color: var(--white);
+            }
+
+            pre green {
+                color: var(--green);
+            }
+
+            pre code-text {
+                color: var(--code);
+            }
+
+            pre h-yellow {
+                color: var(--high-yellow);
+            }
+
+            pre pink {
+                color: var(--pink);
+            }
+
+            pre purple {
+                color: var(--purple);
+            }
+
+            pre blue {
+                color: var(--blue);
+            }
+
+            pre orange {
+                color: var(--orange);
+            }
+
+            button.copy {
+                top: 63px;
+                left: 32px;
+            }
+
+            .toast {
+                position: fixed;
+                left: 50%;
+                bottom: calc(0px + 64px);
+                transform: translateX(-50%);
+                display: block;
+                border-radius: 16px;
+                border: 1px solid var(--color-borderline);
+                width: max-content;
+                height: 32px;
+                background: transparent;
+                font-size: 20px;
+                color: var(--color-text-main);
+                text-align: center;
+                transition: bottom 1s;
+            }
+
+            .toast.put {
+                bottom: calc(0px - 32px);
+            }
+
+            .toast.success {
+                border-color: var(--t-light-blue);
+                background: var(--t-light-blue);
+            }
+
+            .toast.failed {
+                border-color: var(--t-red);
+                background: var(--t-red);
+            }
+
+            .toast.delete {
+                opacity: 0;
+                transition: opacity 2s;
+            }
+        </style>
+    </head>
+    <body class="dark-blue light-blue">
+        <div class="card" id="template">
+            <p></p>
+        </div>
+        <button class="btn-primary copy" id="btnCopy">corpy</button>
+        <!-- <div class="toast success">hogehoge</div> -->
+        <script>((d) => {
+            window.exApi.asset.install();
+            
+            const card = d.getElementById('template');
+            card.children[0].innerHTML = 
+`<pre><yellow>&lt;!DOCTYPE <white>html</white>></yellow>
+<yellow>&lt;html <white>lang</white><code-text>=</code-text><green>"ja"</green>></yellow>
+    <yellow>&lt;head></yellow>
+        <yellow>&lt;meta <white>charset</white><code-text>=</code-text><green>"utf-8"</green>></yellow>
+        <yellow>&lt;script <white>src</white><code-text>=</code-text><green>"https://aker-h.github.io/js/twitter/install-theme.js"</green>><\/script></yellow><yellow>&lt;\/script></yellow>
+    <yellow>&lt;/head></yellow>
+    <yellow>&lt;body <white>class</white><code-text>=</code-text><green>"dark-blue light-blue"</green>></yellow>
+        <yellow>&lt;script <white>src</white><code-text>=</code-text><green>"https://code.jquery.com/jquery-3.6.1.min.js"</green>><\/script></yellow><yellow>&lt;\/script></yellow>
+        <yellow>&lt;script></yellow><h-yellow>(</h-yellow><pink>()</pink> <code-text>=></code-text> <pink>{</pink> <code-text>window</code-text>.<purple>exApi</purple>.<purple>asset</purple>.<yellow>install</yellow><blue>()<blue><orange>;</orange><pink>}</pink><h-yellow>)()</h-yellow><yellow><orange>;</orange>&lt;\/script></yellow>
+    <yellow>&lt;/body></yellow>
+<yellow>&lt;/html></yellow></pre>`;
+
+            const btn = d.querySelector('#btnCopy');
+
+            const putToast = async (text, type, width) => {
+                const toast = d.createElement('div');
+                toast.className = 'toast put';
+                toast.textContent = text;
+                toast.style = `width: ${width}`;
+
+                switch (type) {
+                    case 'success': {
+                        toast.classList.add('success');
+                        break;
+                    }
+                    case 'failed': {
+                        toast.classList.add('failed');
+                        break;
+                    }
+                }
+
+                d.body.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.classList.remove('put');
+                }, 1);
+
+                const waitToast = async () => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            toast.classList.add('delete');
+                            resolve();
+                        }, 2000);
+                    });
+                };
+
+                await waitToast();
+
+                const deleteToast = async () => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            d.body.removeChild(toast);
+                            resolve();
+                        }, 2000);
+                    });
+                };
+
+                await deleteToast();
+            }
+            
+            const btnHandler = async () => {
+                const str = card.textContent;
+
+                try {
+                    navigator.clipboard.writeText(str.trim());
+
+                    putToast('コピーしました。', 'success', '256px');                    
+                    
+                } catch (e) {
+                    putToast('コピーに失敗しました。', 'failed', '300px');
+                }
+                
+            };
+
+            btn.addEventListener('click', btnHandler);
+        })(document);</script>
+    </body>
+</html>

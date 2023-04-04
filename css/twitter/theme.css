@@ -1,0 +1,68 @@
+body.black {
+    --bg-card: #15181c;
+    --bg-input: #202327;
+    --bg-overlay: rgba(91, 112, 131, 0.4);
+    --bg-wallpaper: #000;
+    --bg-wallpaper-blur: rgba(0, 0, 0, 0.65);
+    
+    --btn-secondary: rgb(239, 243, 244);
+    --btn-secondary-on: rgb(215, 219, 220);
+
+    --color-borderline: #2f3336;
+    --color-shadow: rgba(255, 255, 255, 0.2);
+    --color-text-main: #d9d9d9;
+    --color-text-main-dis: #7f7f7f;
+    --color-text-sub: #0f1419;
+    --color-text-gray: #6e767d;
+
+    --highlight: rgba(255, 255, 255, 0.03);
+    --highlight-item: rgba(231, 233, 234, 0.1);
+
+    --shadow: var(--color-shadow) 0px 0px 15px, var(--color-shadow) 0px 0px 3px 1px;
+}
+
+body.dark-blue {
+    --bg-card: #192734;
+    --bg-input: #253341;
+    --bg-overlay: rgba(91, 112, 131, 0.4);
+    --bg-wallpaper: #15202b;
+    --bg-wallpaper-blur: rgba(21, 32, 43, 0.75);
+
+    --btn-secondary: rgb(239, 243, 244);
+    --btn-secondary-on: rgb(215, 219, 220);
+
+    --color-borderline: #38444d;
+    --color-shadow: rgba(136, 153, 166, 0.2);
+    --color-text-main: var(--t-white);
+    --color-text-main-dis: #8a8f95;
+    --color-text-sub: rgb(15, 20, 25);
+    --color-text-gray: #8899a6;
+
+    --highlight: rgba(255, 255, 255, 0.03);
+    --highlight-item: rgba(255, 255, 255, 0.1);
+
+    --shadow: var(--color-shadow) 0px 0px 15px, var(--color-shadow) 0px 0px 3px 1px;
+}
+
+body.light {
+    --bg-card: #f7f9f9;
+    --bg-input: #eff3f4;
+    --bg-overlay: rgba(0, 0, 0, 0.4);
+    --bg-wallpaper: var(--t-white);
+    --bg-wallpaper-blur: rgba(255, 255, 255, 0.75);
+
+    --btn-secondary: rgb(15, 20, 25);
+    --btn-secondary-on: rgb(39, 44, 48);    
+
+    --color-borderline: #eff3f4;
+    --color-shadow: rgba(101, 119, 134, 0.2);
+    --color-text-main: var(--tBlack);
+    --color-text-main-dis: #8a8f95;
+    --color-text-sub: var(--tWhite);
+    --color-text-gray: #636363;
+
+    --highlight: rgba(0, 0, 0, 0.03);
+    --highlight-item: rgba(15, 20, 25, 0.1);
+
+    --shadow: var(--color-shadow) 0px 0px 15px, var(--color-shadow) 0px 0px 3px 1px;
+}

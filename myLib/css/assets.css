@@ -1,0 +1,40 @@
+body {
+    background-color: var(--wallpaper);
+}
+
+button {
+    border: 1px solid var(--borderline);
+    border-radius: 20px;
+    padding:4px 20px;
+    background-color: transparent;
+    color: var(--textMain);
+    font-size: 24px;
+}
+
+button:hover {
+    background-color: var(--itemHighlight);
+}
+
+button.primary {
+    border-color: var(--mainBtn);
+    background-color: var(--mainBtn);
+    color: var(--tWhite);
+}
+
+button.primary:hover {
+    background-color: var(--mainBtnOn);
+}
+
+button.primary:disabled {
+    background-color: var(--mainBtnDis);
+}
+
+button.secondary {
+    border-color: var(--subBtn);
+    background-color: var(--subBtn);
+    color: var(--subBtnTxt);
+}
+
+button.secondary:hover {
+    background-color: var(--subBtnOn);
+}

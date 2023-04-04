@@ -1,0 +1,2 @@
+type TimeKeys= 'hoursLeft'| 'hoursRight'| 'minutesLeft'| 'minutesRight'| 'secondsLeft'| 'secondsRight';
+type DateKeys= 'day1'| 'day2'| 'day3'| 'dateLeft'| 'dateRight'| 'indexLeft'| 'indexRight'| 'month1'| 'month2'| 'month3'| 'year1'| 'year2'| 'year3'| 'year4';

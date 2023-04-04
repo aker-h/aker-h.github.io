@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/earlyaccess/hannari.css");
+
+* {
+    user-select: none;
+} 
+
+html {
+    max-width: 70ch;
+    padding: 3em 1em;
+    margin: auto;
+    line-height: 1.75;
+    font-size: 1.25em;
+    font-family: 'Hannari', serif;    
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    max-width: 70ch;
+    padding-top: calc(3em + 102.3px);
+    padding-top: 162px;
+    padding-bottom: 3em;
+    margin: auto;
+    line-height: 1.75;
+    font-size: 24px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.content > img {
+    width: auto;
+    max-width: 70ch;
+}
+
+.cover > .top,
+.cover > .bottom {
+    position: fixed;
+    left: 0;
+    display: block;
+    width: 100vw;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+}
+
+.cover > .top {
+    top: 0;
+    height: 162px;
+}
+
+.cover > .bottom {
+    bottom: 0;
+    height: 3em;
+} 
+
+.title-wrapper {
+    position: relative;
+    margin: auto;
+    display: block;
+    max-width: 70ch;
+    padding: 3em 1em;    
+    width: 100%;
+    height: fit-content;
+    z-index: 10;
+}
+
+@media screen and (max-width:1700px) {
+    .content > img {
+        transform: rotate(180deg);
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .content > img {
+        height: 100vw;
+    }
+}

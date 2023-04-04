@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf8">
+        <link rel="stylesheet" href="../css/root.css">
+        <style>
+            html, body, .wrapper {
+                width: 400px;
+                height: 500px;
+                background: var(--wallpaper);
+            }
+
+            .wrapper {
+                background: var(--tPinkBg);
+            }
+            
+            .sampleButton {
+                margin: 8px;
+                font-size: 18px;
+                background: var(--tLightGray);
+                border: 1px solid var(--tLightGray);
+                color: var(--textBlack);
+            }
+
+            .sampleButton:hover {
+                background: var(--tLightGrayOn);
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </head>
+    <body style="margin: 0">
+        <div class="wrapper">
+            <button class="sampleButton" id="buttonJamp">Jamp</button>
+        </div>
+        <script>
+            $('#buttonJamp').on('click', () => {
+                let parentDocument = $('#iframeTest', parent.document)[0];
+                console.log(parentDocument.src);
+
+                parentDocument.src = 'inner/1.html';
+            });
+        </script>
+    </body>
+</html>
